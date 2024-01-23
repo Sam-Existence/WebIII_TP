@@ -6,7 +6,9 @@ import {
 } from 'react-router-dom';
 import { Header } from "./composants/Header";
 import { Footer } from "./composants/Footer";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+
+import { PageAccueil } from "./pages/PageAccueil";
 
 function App() {
   return (
@@ -14,7 +16,7 @@ function App() {
       <Header />
       <Container>
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" element={<PageAccueil />} />
         </Routes>
       </Container>
       <Footer />
