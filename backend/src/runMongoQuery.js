@@ -2,8 +2,8 @@ import {MongoClient} from 'mongodb';
 
 const runMongoQuery = async (operations) => {
     try {
-        const client = await MongoClient.connect('mongodb://a.0.0:27017');
-        const db = client.db('jeuMainDes');
+        const client = await MongoClient.connect('mongodb://0.0.0.0:27017');
+        const db = client.db('repertoire');
 
         await operations(db).catch(console.error);
 
