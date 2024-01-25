@@ -9,7 +9,7 @@ export const TableauRepertoire = ({ repertoires }) => {
                 <tr>
                     <th>Titre</th>
                     <th>Artiste</th>
-                    <th>Catagorie</th>
+                    <th>Catégorie</th>
                 </tr>
             </thead>
             <tbody>

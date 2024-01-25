@@ -6,8 +6,7 @@ export const PageRepertoire = () => {
     const [repertoires, setRepertoires] = useState(repertoire.sort((a, b) => a.categorie.localeCompare(b.categorie)));
     useEffect(() => {
         const chercherRepertoires = async () => {
-            const resultat = await fetch('/api/pieces')
-            const body = await resultat.json();
+            const body = await fetch('/api/pieces').then(resultat => resultat.json());
             setRepertoires(body.sort((a, b) => a.categorie.localeCompare(b.categorie)))
         };
         chercherRepertoires();
