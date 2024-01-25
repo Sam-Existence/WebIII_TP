@@ -17,6 +17,7 @@ app.get('/api/pieces/:id', async (requete, reponse) => {
     let musique = null;
     let {id} = requete.params;
     let idEstBonFormat = true;
+
     try {
         id = new ObjectId(id);
     } 
@@ -29,7 +30,6 @@ app.get('/api/pieces/:id', async (requete, reponse) => {
     {
         await runMongoQuery(async (dbo) => {
             musique = await dbo.collection('musiques').findOne({_id: new ObjectId(id)});
-            console.log(musique);
         });
 
         if(!musique) {
@@ -56,6 +56,45 @@ app.post('/api/pieces', async (requete, reponse) => {
             reponse.status(201).json({'location': `/api/pieces/${id}`});
         } else {
             reponse.status(500).json({'erreur': 'Ressource non créée'});
+        }
+    }
+});
+
+app.put('/api/pieces/:id', async (requete, reponse) => {
+    let musique = null;
+    let {id} = requete.params;
+    const {titre, artiste, categorie} = requete.body;
+    let idEstBonFormat = true;
+
+    try {
+        id = new ObjectId(id);
+    } 
+    catch (erreur) {
+        reponse.status(400).json({'erreur': 'Id au mauvais format'});
+        idEstBonFormat = false;
+    }
+
+    if(!titre && !artiste && !categorie) {
+        reponse.status(400).json({'erreur': 'Titre, artiste et/ou catégorie doit être rempli'});
+    } 
+    else if(idEstBonFormat)
+    {
+        let update = {};
+        titre ? update['titre'] = titre : null;
+        artiste ? update['artiste'] = artiste : null;
+        categorie ? update['categorie'] = categorie : null;
+
+        await runMongoQuery(async (dbo) => {
+            musique = await dbo.collection('musiques').findOneAndUpdate(
+                {_id: new ObjectId(id)}, 
+                {$set: update}, 
+                {returnDocument: 'after'});
+        });
+
+        if(!musique) {
+            reponse.status(404).json({'erreur': 'Musique non trouvée'});
+        } else {
+            reponse.status(200).json(musique);
         }
     }
 });
