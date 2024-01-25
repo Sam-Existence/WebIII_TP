@@ -10,6 +10,7 @@ import Container from "react-bootstrap/Container";
 
 import { PageAccueil } from "./pages/PageAccueil";
 import { PageRepertoire } from "./pages/PageRepertoire";
+import { PageAjouterRepertoire } from "./pages/PageAjouterRepertoire";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PageAccueil />} />
           <Route path="/repertoire" element={<PageRepertoire />} />
+          <Route path="/ajouter" element={<PageAjouterRepertoire />} />
         </Routes>
       </Container>
       <Footer />
