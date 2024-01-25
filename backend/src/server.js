@@ -40,4 +40,24 @@ app.get('/api/pieces/:id', async (requete, reponse) => {
     }
 });
 
+app.post('/api/pieces', async (requete, reponse) => {
+    const {titre, artiste, categorie} = requete.body;
+    let id = null;
+
+    if(!titre || !artiste || !categorie) {
+        reponse.status(400).json({'erreur': 'Titre, artiste ou catégorie vide'});
+    }
+    else {
+        await runMongoQuery(async (dbo) => {
+            id = (await dbo.collection('musiques').insertOne({titre, artiste, categorie})).insertedId;
+        });
+    
+        if(id) {
+            reponse.status(201).json({'location': `/api/pieces/${id}`});
+        } else {
+            reponse.status(500).json({'erreur': 'Ressource non créée'});
+        }
+    }
+});
+
 app.listen(8000, () => console.log("Port 8000 écouté"));
