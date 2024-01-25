@@ -99,4 +99,31 @@ app.put('/api/pieces/:id', async (requete, reponse) => {
     }
 });
 
+app.delete('/api/pieces/:id', async (requete, reponse) => {
+    let {id} = requete.params;
+    let idEstBonFormat = true;
+
+    try {
+        id = new ObjectId(id);
+    } 
+    catch (erreur) {
+        reponse.status(400).json({'erreur': 'Id au mauvais format'});
+        idEstBonFormat = false;
+    }
+
+    if(idEstBonFormat)
+    {
+        let resultat = null;
+        await runMongoQuery(async (dbo) => {
+            resultat = await dbo.collection('musiques').deleteOne({_id: new ObjectId(id)});
+        });
+
+        if(resultat.deletedCount < 1) {
+            reponse.status(404).json({'erreur': 'Musique non trouvée'});
+        } else {
+            reponse.status(200).json({'message': `Musique ${id} supprimée`});
+        }
+    }
+});
+
 app.listen(8000, () => console.log("Port 8000 écouté"));
