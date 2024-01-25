@@ -9,6 +9,7 @@ import { Footer } from "./composants/Footer";
 import Container from "react-bootstrap/Container";
 
 import { PageAccueil } from "./pages/PageAccueil";
+import { PageRepertoire } from "./pages/PageRepertoire";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<PageAccueil />} />
+          <Route path="/repertoire" element={<PageRepertoire />} />
         </Routes>
       </Container>
       <Footer />
