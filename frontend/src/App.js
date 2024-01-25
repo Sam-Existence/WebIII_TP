@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import { PageAccueil } from "./pages/PageAccueil";
 import { PageRepertoire } from "./pages/PageRepertoire";
 import { PageAjouterRepertoire } from "./pages/PageAjouterRepertoire";
+import { PageAdmin } from "./pages/PageAdmin";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<PageAccueil />} />
           <Route path="/repertoire" element={<PageRepertoire />} />
           <Route path="/ajouter" element={<PageAjouterRepertoire />} />
+          <Route path="/admin" element={<PageAdmin />} />
         </Routes>
       </Container>
       <Footer />
