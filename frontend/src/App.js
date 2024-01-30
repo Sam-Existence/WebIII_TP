@@ -12,6 +12,7 @@ import { PageAccueil } from "./pages/PageAccueil";
 import { PageRepertoire } from "./pages/PageRepertoire";
 import { PageAjouterRepertoire } from "./pages/PageAjouterRepertoire";
 import { PageAdmin } from "./pages/PageAdmin";
+import { PageModifierRepertoire } from "./pages/PageModifierRepertoire";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<PageAccueil />} />
           <Route path="/repertoire" element={<PageRepertoire />} />
           <Route path="/ajouter" element={<PageAjouterRepertoire />} />
+          <Route path="/modifier/:id" element={<PageModifierRepertoire />} />
           <Route path="/admin" element={<PageAdmin />} />
         </Routes>
       </Container>

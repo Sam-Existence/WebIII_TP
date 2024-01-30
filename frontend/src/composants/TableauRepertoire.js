@@ -16,7 +16,7 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
             <tbody>
                 {repertoires.map(repertoire => 
                     <RangeeRepertoire 
-                        key={`${repertoire.titre}_${repertoire.artiste}`}
+                        key={repertoire._id}
                         repertoire={repertoire}
                         buttons={buttons}
                     />)}

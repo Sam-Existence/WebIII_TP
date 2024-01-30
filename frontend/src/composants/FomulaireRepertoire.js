@@ -1,32 +1,66 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const FomulaireRepertoire = () => {
+export const FomulaireRepertoire = ({ type="post", repertoire=null}) => {
     const [titre, setTitre] = useState('');
     const [artiste, setArtiste] = useState('');
     const [categorie, setCategorie] = useState('');
     const [status, setStatus] = useState('');
 
+    useEffect( () => {
+        setTitre(repertoire === null ? '' : repertoire.titre);
+        setArtiste(repertoire === null ? '' : repertoire.artiste);
+        setCategorie(repertoire === null ? '' : repertoire.categorie);
+    }, [repertoire]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const repertoire = 
+        const body = 
             {
+                id: (repertoire === null ? null : repertoire._id),
                 titre,
                 artiste,
                 categorie
             };
-        const reponse = await fetch('/api/pieces', {
-            method: 'POST',
-            body: JSON.stringify(repertoire),
-            headers: { 'Content-Type': 'application/json' }
-        });
+        let reponse;
+        switch (type) {
+            case "post":
+                reponse = await fetch('/api/pieces', {
+                    method: 'POST',
+                    body: JSON.stringify(body),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                break;
+            case "put": 
+                reponse = await fetch(`/api/pieces/${repertoire._id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(body),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                break;
+            
+            default:
+                break;
+        }
 
-        if (reponse.status !== 201) {
-            setStatus("Erreur, le répertoire n'a pas été ajouté");
-        } else {
+        if (reponse.status === 201 || reponse.status === 200) {
             const resultat = await reponse.json();
-            setStatus(`Le répertoire a été ajouté avec l'id : ${resultat.location.split('/')[3]}`)
+            
+            switch (type) {
+                case "post":
+                    setStatus(`Le répertoire a été ajouté avec l'id : ${resultat.location.split('/')[3]}`)
+                    break;
+                
+                case "put":
+                    setStatus(`Le répertoire ${repertoire._id} a été mis à jour`);
+                    break;
+                
+                default:
+                    break;
+            }
+        } else {
+            setStatus("Erreur, le répertoire n'a pas été ajouté");
         }
     }
     return (
