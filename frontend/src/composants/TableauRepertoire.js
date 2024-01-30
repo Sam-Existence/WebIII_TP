@@ -3,6 +3,10 @@ import Table from 'react-bootstrap/Table';
 import { RangeeRepertoire } from "./RangeeRepertoire";
 
 export const TableauRepertoire = ({ repertoires, buttons=false }) => {
+    if (repertoires === undefined) {
+        return;
+    }
+
     return(
         <Table striped bordered hover>
             <thead>
