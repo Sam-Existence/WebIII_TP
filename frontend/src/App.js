@@ -13,6 +13,7 @@ import { PageRepertoire } from "./pages/PageRepertoire";
 import { PageAjouterRepertoire } from "./pages/PageAjouterRepertoire";
 import { PageAdmin } from "./pages/PageAdmin";
 import { PageModifierRepertoire } from "./pages/PageModifierRepertoire";
+import { PageConfirmationSuppression } from "./pages/PageConfirmationSuppression";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/repertoire" element={<PageRepertoire />} />
           <Route path="/ajouter" element={<PageAjouterRepertoire />} />
           <Route path="/modifier/:id" element={<PageModifierRepertoire />} />
+          <Route path="/supprimer/:id" element={<PageConfirmationSuppression />} />
           <Route path="/admin" element={<PageAdmin />} />
         </Routes>
       </Container>
