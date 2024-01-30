@@ -35,8 +35,8 @@ Les récits utilisateurs sont :
 
 - En tant que client, je veux être capable de consulter le répertoire disponible trié par catégories;
 - En tant que client, je veux être capable de créer une nouvelle liste de demandes spéciales en y ajoutant mon nom;
-- En tant que client, je veux être capable d’ajouter n’importe quelle pièce à une liste de demandes spéciales;
-- En tant que client, je veux être capable de retirer n’importe quelle pièce d’une liste de demandes spéciales;
+- En tant que client, je veux être capable d’ajouter n’importe quelle pièce du répertoire à une liste de demandes spéciales;
+- En tant que client, je veux être capable de retirer n’importe quelle pièce du répertoire d’une liste de demandes spéciales;
 - En tant que client, je veux être capable d’envoyer une liste de demande spéciales avec mon nom;
 - En tant que client, lors de la création/modification d’une liste de demandes spéciales, je veux être capable de trier les pièces du répertoire par ordre croissant et décroissant des champs « titre », « artiste » et « catégorie ».
 - En tant que client, lors de la création/modification d’une liste de demandes spéciales, je veux être capable d’entrer des caractères pour filtrer le répertoire selon le titre, l’artiste et la catégorie;
@@ -66,4 +66,4 @@ Les points qui seront évalués pour le travail individuel seront :
 
 ### Note d’équipe (5 points)
 
-Sur Git, organisez vos travaux de manière à éviter de faire des commits en parallèle. Structurez votre branche de développement principale de manière à être la plus linéaire possible. Un bonus de 10 points sera accordé à une équipe qui arrive à faire tout son développement sans aucun embranchement.
+Sur Git, organisez vos travaux de manière à éviter de faire des commits en parallèle. Structurez votre branche de développement principale de manière à être la plus linéaire possible. Un bonus de 10 % sera accordé à une équipe qui arrive à faire tout son développement sans aucun embranchement.
