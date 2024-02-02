@@ -9,7 +9,7 @@ export const PageModifierRepertoire = () => {
     const [repertoire, setRepertoire] = useState();
     useEffect(() => {
         const chercherRepertoire = async (_id) => {
-            const body = await fetch(`/api/pieces/${_id}`).then(resultat => resultat.json());
+            const body = await fetch(`/api/repertoire/pieces/${_id}`).then(resultat => resultat.json());
             setRepertoire(body)
         };
         chercherRepertoire(id);

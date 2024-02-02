@@ -3,7 +3,7 @@ import {MongoClient} from 'mongodb';
 const runMongoQuery = async (operations) => {
     try {
         const client = await MongoClient.connect('mongodb://0.0.0.0:27017');
-        const db = client.db('repertoire');
+        const db = client.db('musique');
 
         await operations(db).catch(console.error);
 

@@ -10,7 +10,7 @@ export const RangeeRepertoire = ({ repertoire, buttons = false }) => {
             <Button
                 variant="primary"
                 type="button"
-                href={`/modifier/${repertoire._id}`}
+                href={`/admin/repertoire/modifier/${repertoire._id}`}
             >
                 Modifier
             </Button>
@@ -18,7 +18,7 @@ export const RangeeRepertoire = ({ repertoire, buttons = false }) => {
             <Button
                 variant="danger"
                 type="button"
-                href={`/supprimer/${repertoire._id}`}
+                href={`/admin/repertoire/supprimer/${repertoire._id}`}
             >
                 Supprimer
             </Button>

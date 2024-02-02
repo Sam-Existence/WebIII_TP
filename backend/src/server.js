@@ -5,15 +5,15 @@ import { ObjectId } from 'mongodb';
 const app = express();
 app.use(express.json());
 
-app.get('/api/pieces', async (requete, reponse) => {
+app.get('/api/repertoire/pieces', async (requete, reponse) => {
     let musiques = null;
     await runMongoQuery(async (dbo) => {
-        musiques = await dbo.collection('musiques').find().toArray();
+        musiques = await dbo.collection('repertoire').find().toArray();
     });
     reponse.status(200).json(musiques);
 });
 
-app.get('/api/pieces/:id', async (requete, reponse) => {
+app.get('/api/repertoire/pieces/:id', async (requete, reponse) => {
     let musique = null;
     let {id} = requete.params;
     let idEstBonFormat = true;
@@ -29,7 +29,7 @@ app.get('/api/pieces/:id', async (requete, reponse) => {
     if(idEstBonFormat)
     {
         await runMongoQuery(async (dbo) => {
-            musique = await dbo.collection('musiques').findOne({_id: new ObjectId(id)});
+            musique = await dbo.collection('repertoire').findOne({_id: new ObjectId(id)});
         });
 
         if(!musique) {
@@ -40,7 +40,7 @@ app.get('/api/pieces/:id', async (requete, reponse) => {
     }
 });
 
-app.post('/api/pieces', async (requete, reponse) => {
+app.post('/api/repertoire/pieces', async (requete, reponse) => {
     const {titre, artiste, categorie} = requete.body;
     let id = null;
 
@@ -49,7 +49,7 @@ app.post('/api/pieces', async (requete, reponse) => {
     }
     else {
         await runMongoQuery(async (dbo) => {
-            id = (await dbo.collection('musiques').insertOne({titre, artiste, categorie})).insertedId;
+            id = (await dbo.collection('repertoire').insertOne({titre, artiste, categorie})).insertedId;
         });
     
         if(id) {
@@ -60,7 +60,7 @@ app.post('/api/pieces', async (requete, reponse) => {
     }
 });
 
-app.put('/api/pieces/:id', async (requete, reponse) => {
+app.put('/api/repertoire/pieces/:id', async (requete, reponse) => {
     let musique = null;
     let {id} = requete.params;
     const {titre, artiste, categorie} = requete.body;
@@ -85,21 +85,21 @@ app.put('/api/pieces/:id', async (requete, reponse) => {
         categorie ? update['categorie'] = categorie : null;
 
         await runMongoQuery(async (dbo) => {
-            musique = await dbo.collection('musiques').findOneAndUpdate(
+            musique = await dbo.collection('repertoire').findOneAndUpdate(
                 {_id: new ObjectId(id)}, 
                 {$set: update}, 
                 {returnDocument: 'after'});
         });
 
         if(!musique) {
-            reponse.status(404).json({'erreur': 'Musique non trouvée'});
+            reponse.status(404).json({'repertoire': 'Musique non trouvée'});
         } else {
             reponse.status(200).json(musique);
         }
     }
 });
 
-app.delete('/api/pieces/:id', async (requete, reponse) => {
+app.delete('/api/repertoire/pieces/:id', async (requete, reponse) => {
     let {id} = requete.params;
     let idEstBonFormat = true;
 
@@ -115,7 +115,7 @@ app.delete('/api/pieces/:id', async (requete, reponse) => {
     {
         let resultat = null;
         await runMongoQuery(async (dbo) => {
-            resultat = await dbo.collection('musiques').deleteOne({_id: new ObjectId(id)});
+            resultat = await dbo.collection('repertoire').deleteOne({_id: new ObjectId(id)});
         });
 
         if(resultat.deletedCount < 1) {

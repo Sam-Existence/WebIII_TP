@@ -1,6 +1,7 @@
 import React from "react";
 import {
   BrowserRouter,
+  Navigate,
   Routes,
   Route
 } from 'react-router-dom';
@@ -23,10 +24,11 @@ function App() {
         <Routes>
           <Route path="/" element={<PageAccueil />} />
           <Route path="/repertoire" element={<PageRepertoire />} />
-          <Route path="/ajouter" element={<PageAjouterRepertoire />} />
-          <Route path="/modifier/:id" element={<PageModifierRepertoire />} />
-          <Route path="/supprimer/:id" element={<PageConfirmationSuppression />} />
-          <Route path="/admin" element={<PageAdmin />} />
+          <Route path="/admin" element={<Navigate to='/admin/repertoire' />} />
+          <Route path="/admin/repertoire" element={<PageAdmin />} />
+          <Route path="/admin/repertoire/ajouter" element={<PageAjouterRepertoire />} />
+          <Route path="/admin/repertoire/modifier/:id" element={<PageModifierRepertoire />} />
+          <Route path="/admin/repertoire/supprimer/:id" element={<PageConfirmationSuppression />} />
         </Routes>
       </Container>
       <Footer />

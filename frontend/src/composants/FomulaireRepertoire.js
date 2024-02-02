@@ -26,14 +26,14 @@ export const FomulaireRepertoire = ({ type="post", repertoire=null}) => {
         let reponse;
         switch (type) {
             case "post":
-                reponse = await fetch('/api/pieces', {
+                reponse = await fetch('/api/repertoire/pieces', {
                     method: 'POST',
                     body: JSON.stringify(body),
                     headers: { 'Content-Type': 'application/json' }
                 });
                 break;
             case "put": 
-                reponse = await fetch(`/api/pieces/${repertoire._id}`, {
+                reponse = await fetch(`/api/repertoire/pieces/${repertoire._id}`, {
                     method: 'PUT',
                     body: JSON.stringify(body),
                     headers: { 'Content-Type': 'application/json' }

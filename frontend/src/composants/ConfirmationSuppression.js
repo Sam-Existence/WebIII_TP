@@ -15,7 +15,7 @@ export const ConfirmationSuppression = ({ repertoire }) => {
     }
 
     const handleConfirmation = async () => {
-        const reponse = await fetch(`/api/pieces/${repertoire._id}`, { method: 'DELETE' });
+        const reponse = await fetch(`/api/repertoire/pieces/${repertoire._id}`, { method: 'DELETE' });
 
         if (reponse.status !== 200) {
             setStatus("Une erreur s'est produite");
