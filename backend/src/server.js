@@ -134,4 +134,12 @@ app.get('/api/demandes-speciales', async (requete, reponse) => {
     reponse.status(200).json(demandesSpeciales);
 });
 
+app.get('/api/demandes-speciales/active', async (requete, reponse) => {
+    let demandesSpeciales = null;
+    await runMongoQuery(async (dbo) => {
+        demandesSpeciales = await dbo.collection('demandesSpeciales').find({active: true}).toArray();
+    });
+    reponse.status(200).json(demandesSpeciales);
+});
+
 app.listen(8000, () => console.log("Port 8000 écouté"));
