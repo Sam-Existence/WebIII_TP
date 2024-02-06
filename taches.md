@@ -13,6 +13,7 @@
 | GET    | /api/demandes-speciales                     | Consulter les demandes spéciales           | Sam         |
 | POST   | /api/demandes-speciales                     | Ajouter une demande spéciale               | Félix       |
 | GET    | /api/demandes-speciales/actives             | Consulter les demandes spéciales actives   | Sam         |
+| GET    | /api/demandes-speciales/:id                 | Consulter une demande spéciale             | Sam         |
 | PUT    | /api/demandes-speciales/:id/desactiver      | Désactiver une demande spéciale            | Félix       |
 | POST   | /api/demandes-speciales/:id/pieces          | Ajouter une pièce à la demande spéciale    | Félix       |
 | DELETE | /api/demandes-speciales/:id/pieces/:idpiece | Supprimer une pièce de la demande spéciale | Félix       |
