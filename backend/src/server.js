@@ -244,6 +244,39 @@ app.get('/api/demandes-speciales/:id', async (requete, reponse) => {
     }
 });
 
+app.put('/api/demandes-speciales/:id/desactiver', async (requete, reponse) => {
+    let demandeSpeciale = null;
+    let { id } = requete.params;
+    let idEstBonFormat = true;
+
+    try {
+        id = new ObjectId(id);
+    } catch (erreur) {
+        reponse.status(400).json({ erreur: "Id au mauvais format" });
+        idEstBonFormat = false;
+    }
+
+    if (idEstBonFormat) {
+        let update = {active: false};
+
+        await runMongoQuery(async (dbo) => {
+            demandeSpeciale = await dbo
+                .collection("demandesSpeciales")
+                .findOneAndUpdate(
+                    { _id: new ObjectId(id) },
+                    { $set: update },
+                    { returnDocument: "after" }
+                );
+        });
+
+        if (!demandeSpeciale) {
+            reponse.status(404).json({ repertoire: "Demande spéciale non trouvée" });
+        } else {
+            reponse.status(200).json(demandeSpeciale);
+        }
+    }
+});
+
 app.get('/api/demandes-speciales/active', async (requete, reponse) => {
     let demandesSpeciales = null;
     await runMongoQuery(async (dbo) => {
