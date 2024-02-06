@@ -8,7 +8,7 @@ export const GabaritAdmin = (props) => {
     return (
         <>
             <Header type="admin"/>
-            <Container>
+            <Container className="py-2">
                 <Outlet />
             </Container>
             <Footer />

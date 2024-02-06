@@ -8,7 +8,7 @@ export const GabaritClient = (props) => {
     return (
         <>
             <Header/>
-            <Container>
+            <Container className="py-2">
                 <Outlet />
             </Container>
             <Footer />
