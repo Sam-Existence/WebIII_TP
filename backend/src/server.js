@@ -289,6 +289,51 @@ app.put('/api/demandes-speciales/:id/desactiver', async (requete, reponse) => {
     }
 });
 
+app.post('/api/demandes-speciales/:id/pieces', async (requete, reponse) => {
+    let demandeSpeciale = null;
+    let { id } = requete.params;
+    let idEstBonFormat = true;
+
+    try {
+        id = new ObjectId(id);
+    } catch (erreur) {
+        reponse.status(400).json({ erreur: "Id au mauvais format" });
+        idEstBonFormat = false;
+    }
+
+    if (idEstBonFormat) {
+        let idPiecesEstBonFormat = true;
+        let { piece } = requete.body;
+        try {
+            idPiecesEstBonFormat = !!piece;
+            piece = new ObjectId(piece);
+        } 
+        catch (erreur) {
+            idPiecesEstBonFormat = false;
+        }
+        if(idPiecesEstBonFormat) {
+            let update = {active: false};
+
+            await runMongoQuery(async (dbo) => {
+                demandeSpeciale = await dbo
+                    .collection("demandesSpeciales")
+                    .findOneAndUpdate(
+                        { _id: new ObjectId(id) },
+                        { $push: {'pieces': piece} },
+                        { returnDocument: "after" }
+                    );
+            });
+            if (!demandeSpeciale) {
+                reponse.status(404).json({ repertoire: "Demande spéciale non trouvée" });
+            } else {
+                reponse.status(200).json(demandeSpeciale);
+            }
+        } else {
+            reponse.status(400).json({'erreur': 'L\'id de la pièce est au mauvais format'});
+        }
+    }
+});
+
 app.get('/api/demandes-speciales/active', async (requete, reponse) => {
     let demandesSpeciales = null;
     await runMongoQuery(async (dbo) => {
