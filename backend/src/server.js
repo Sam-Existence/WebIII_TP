@@ -186,6 +186,37 @@ app.get("/api/demandes-speciales", async (requete, reponse) => {
     reponse.status(200).json(demandesSpeciales);
 });
 
+app.post('/api/demandes-speciales', async (requete, reponse) => {
+    let { nom, pieces } = requete.body;
+    let id = null;
+    if(!nom || !pieces?.length) {
+        reponse.status(400).json({ 'erreur': 'La demande spéciale n\'a pas un format correct' });
+    } else {
+        let idPiecesEstBonFormat = true;
+        try {
+            pieces = pieces.map(piece => new ObjectId(piece));
+        }
+        catch (erreur) {
+            reponse.status(400).json({'erreur': 'L\'id des pièces n\'est pas au bon format.'});
+            idPiecesEstBonFormat = false;
+        }
+        if(idPiecesEstBonFormat) {
+            await runMongoQuery(async dbo => {
+                id = (await dbo.collection('demandesSpeciales')
+                        .insertOne(
+                            {
+                                nom,
+                                pieces,
+                                active: true
+                            }
+                        ))
+                    .insertedId;
+            });
+            reponse.status(400).json({ 'uri': `/api/demandes-speciales/${id}` });
+        }
+    }
+});
+
 app.get('/api/demandes-speciales/:id', async (requete, reponse) => {
     let demandeSpeciale = null;
     let {id} = requete.params;
