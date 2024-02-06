@@ -334,6 +334,46 @@ app.post('/api/demandes-speciales/:id/pieces', async (requete, reponse) => {
     }
 });
 
+app.delete('/api/demandes-speciales/:id/pieces/:idpiece', async (requete, reponse) => {
+    let demandeSpeciale = null;
+    let { id, idpiece } = requete.params;
+    let idEstBonFormat = true;
+    let idPiecesEstBonFormat = true;
+
+    try {
+        id = new ObjectId(id);
+    } catch (erreur) {
+        reponse.status(400).json({ erreur: "L'id au mauvais format" });
+        idEstBonFormat = false;
+    }
+
+    try {
+        idpiece = new ObjectId(idpiece);
+    } catch (erreur) {
+        reponse.status(400).json({ erreur: "L'id de la pièce au mauvais format" });
+        idPiecesEstBonFormat = false;
+    }
+
+    if (idEstBonFormat && idPiecesEstBonFormat) {
+        let update = { $pull: { 'pieces': idpiece } };
+
+        await runMongoQuery(async (dbo) => {
+            demandeSpeciale = await dbo
+                .collection("demandesSpeciales")
+                .findOneAndUpdate(
+                    { _id: new ObjectId(id) },
+                    update,
+                    { returnDocument: "after" }
+                );
+        });
+        if (!demandeSpeciale) {
+            reponse.status(404).json({ repertoire: "Demande spéciale non trouvée" });
+        } else {
+            reponse.status(200).json(demandeSpeciale);
+        }
+    }
+});
+
 app.get('/api/demandes-speciales/active', async (requete, reponse) => {
     let demandesSpeciales = null;
     await runMongoQuery(async (dbo) => {
