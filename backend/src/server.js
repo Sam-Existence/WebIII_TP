@@ -233,13 +233,25 @@ app.get('/api/demandes-speciales/:id', async (requete, reponse) => {
     if(idEstBonFormat)
     {
         await runMongoQuery(async (dbo) => {
-            demandeSpeciale = await dbo.collection('demandesSpeciales').findOne({_id: new ObjectId(id)});
+            demandeSpeciale = await dbo.collection('demandesSpeciales').aggregate([
+                {
+                    $match: { _id: id },
+                },
+                {
+                    $lookup: {
+                        from: "repertoire",
+                        localField: "pieces",
+                        foreignField: "_id",
+                        as: "pieces",
+                    },
+                },
+            ]).toArray();
         });
 
         if(!demandeSpeciale) {
             reponse.status(404).json({'erreur': 'Demande spéciale non trouvée'});
         } else {
-            reponse.status(200).json(demandeSpeciale);
+            reponse.status(200).json(demandeSpeciale[0]);
         }
     }
 });
