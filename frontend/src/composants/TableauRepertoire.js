@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { RangeeRepertoire } from "./RangeeRepertoire";
 
 export const TableauRepertoire = ({ repertoires, buttons=false }) => {
-    if (repertoires === undefined) {
+    if (!repertoires?.length) {
         return;
     }
 
