@@ -16,6 +16,7 @@ import { GabaritClient } from "./composants/GabaritClient";
 import { GabaritAdmin } from "./composants/GabaritAdmin";
 import { PageConsulterDemandeSpeciale } from "./pages/PageConsulterDemandeSpeciale";
 import { PageConsulterTop5 } from "./pages/PageConsulterTop5";
+import { PageDemandeSpeciales } from "./pages/PageDemandesSpeciales";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="repertoire/ajouter" element={<PageAjouterRepertoire />} />
             <Route path="repertoire/modifier/:id" element={<PageModifierRepertoire />} />
             <Route path="repertoire/supprimer/:id" element={<PageConfirmationSuppression />} />
+            <Route path="demandes-speciales" element={<PageDemandeSpeciales />} />
             <Route path="demandes-speciales/:id" element={<PageConsulterDemandeSpeciale />} />
           </Route>
         </Routes>

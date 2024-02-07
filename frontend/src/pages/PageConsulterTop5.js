@@ -7,7 +7,6 @@ export const PageConsulterTop5 = () => {
     useEffect(() => {
         const recupererTop5Pieces = async () => {
             const body = await fetch(`/api/repertoire/pieces/top/5`).then(resultat => resultat.json());
-            console.log(body);
             setTop5(body);
         };
         recupererTop5Pieces();
