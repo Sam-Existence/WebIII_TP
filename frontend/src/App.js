@@ -15,6 +15,7 @@ import { PageConfirmationSuppression } from "./pages/PageConfirmationSuppression
 import { GabaritClient } from "./composants/GabaritClient";
 import { GabaritAdmin } from "./composants/GabaritAdmin";
 import { PageConsulterDemandeSpeciale } from "./pages/PageConsulterDemandeSpeciale";
+import { PageConsulterTop5 } from "./pages/PageConsulterTop5";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/admin" element={<GabaritAdmin />}>
             <Route index element={<Navigate to='/admin/repertoire' />} />
             <Route path="repertoire" element={<PageAdmin />} />
+            <Route path="repertoire/top-5" element={<PageConsulterTop5 />} />
             <Route path="repertoire/ajouter" element={<PageAjouterRepertoire />} />
             <Route path="repertoire/modifier/:id" element={<PageModifierRepertoire />} />
             <Route path="repertoire/supprimer/:id" element={<PageConfirmationSuppression />} />

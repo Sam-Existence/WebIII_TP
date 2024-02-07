@@ -9,7 +9,7 @@
 | GET    | /api/repertoire/pieces/:id                  | Consulter une pièce                        | Félix       |
 | PUT    | /api/repertoire/pieces/:id                  | Modifier une pièce                         | Félix       |
 | DELETE | /api/repertoire/pieces/:id                  | Supprimer une pièce                        | Félix       |
-| GET    | /api/repertoire/pieces/top/:quantite        | Consulter le top x des pièces              | Sam         |
+| GET    | /api/repertoire/pieces/top/:quantite        | Consulter le top x des pièces              | Sam/Félix   |
 | GET    | /api/demandes-speciales                     | Consulter les demandes spéciales           | Sam         |
 | POST   | /api/demandes-speciales                     | Ajouter une demande spéciale               | Félix       |
 | GET    | /api/demandes-speciales/actives             | Consulter les demandes spéciales actives   | Sam         |
