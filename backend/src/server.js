@@ -151,12 +151,19 @@ app.get("/api/repertoire/pieces/top/:quantite", async (requete, reponse) => {
                 },
                 {
                     $group: {
-                        _id: "$piece._id",
+                        _id: { $first: "$piece._id"},
                         titre: { $first: "$piece.titre" },
                         artiste: { $first: "$piece.artiste" },
                         categorie: { $first: "$piece.categorie" },
                         count: { $sum: 1 },
                     },
+                },
+                {
+                    $match: {
+                        _id: {
+                            $ne: null
+                        }
+                    }
                 },
                 {
                     $sort: {
@@ -169,7 +176,7 @@ app.get("/api/repertoire/pieces/top/:quantite", async (requete, reponse) => {
                 }
             ]).toArray();
         });
-        reponse.status(200).json({ pieces });
+        reponse.status(200).json(pieces);
     } else {
         reponse.status(400).json({ erreur: "La quantité doit être un entier" });
     }
