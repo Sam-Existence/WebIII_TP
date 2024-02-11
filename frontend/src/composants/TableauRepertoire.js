@@ -9,6 +9,11 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
         setRepertoiresTries(repertoires.sort((a, b) => a.categorie.localeCompare(b.categorie)));
     }
 
+    const handleSupression = repertoireASupprimer => {
+        const nouveauRepertoires = repertoiresTries.filter(repertoire => repertoire._id !== repertoireASupprimer._id);
+        setRepertoiresTries(nouveauRepertoires);
+    }
+
     const trierParTitreCroissant = () => {
         const nouveauRepertoires = repertoiresTries.toSorted((a, b) => a.titre.localeCompare(b.titre));
         setRepertoiresTries(nouveauRepertoires);
@@ -79,6 +84,7 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
                         key={repertoire._id}
                         repertoire={repertoire}
                         buttons={buttons}
+                        handleSupression={handleSupression}
                     />)}
             </tbody>
         </Table>
