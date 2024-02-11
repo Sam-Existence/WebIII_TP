@@ -16,6 +16,7 @@ import { GabaritAdmin } from "./composants/GabaritAdmin";
 import { PageConsulterDemandeSpeciale } from "./pages/PageConsulterDemandeSpeciale";
 import { PageConsulterTop5 } from "./pages/PageConsulterTop5";
 import { PageDemandeSpeciales } from "./pages/PageDemandesSpeciales";
+import { PageRechercherDemandeSpeciales } from "./pages/PageRechercherDemandeSpeciale";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<GabaritClient />}>
             <Route index element={<PageAccueil />} />
             <Route path="repertoire" element={<PageRepertoire />} />
+            <Route path="demandes-speciales" element={<PageRechercherDemandeSpeciales />} />
           </Route>
           <Route path="/admin" element={<GabaritAdmin />}>
             <Route index element={<Navigate to='/admin/repertoire' />} />
