@@ -22,14 +22,14 @@
 
 ### Administrateur
 
-| Route                                    | Description                         | Responsable |
-| ---------------------------------------- | ----------------------------------- | ----------- |
-| /admin/repertoire                        | Consulter les données du répertoire | Sam         |
-| /admin/repertoire/ajouter                | Ajouter une pièce au répertoire     | Sam         |
-| /admin/repertoire/modifier/:id           | Modifier une pièce                  | Sam         |
-| /admin/repertoire/top/5                  | Consulter le top 5                  | Félix       |
-| /admin/demandes-speciales(?actives=true) | Consulter les demandes spéciales    | Félix       |
-| /admin/demandes-speciales/:id            | Consulter une demande spéciale      | Sam         |
+| Route                               | Description                         | Responsable |
+| ----------------------------------- | ----------------------------------- | ----------- |
+| /admin/repertoire                   | Consulter les données du répertoire | Sam         |
+| /admin/repertoire/ajouter           | Ajouter une pièce au répertoire     | Sam         |
+| /admin/repertoire/modifier/:id      | Modifier une pièce                  | Sam         |
+| /admin/repertoire/top/5             | Consulter le top 5                  | Félix       |
+| /admin/demandes-speciales(?actives) | Consulter les demandes spéciales    | Félix       |
+| /admin/demandes-speciales/:id       | Consulter une demande spéciale      | Sam         |
 
 ### Client
 
