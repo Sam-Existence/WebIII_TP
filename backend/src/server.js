@@ -41,17 +41,17 @@ app.get("/api/repertoire/pieces/:id", async (requete, reponse) => {
 });
 
 app.post("/api/repertoire/pieces", async (requete, reponse) => {
-    const { titre, artiste, categorie } = requete.body;
+    const { titre, artiste, categories } = requete.body;
     let id = null;
 
-    if (!titre || !artiste || !categorie) {
+    if (!titre || !artiste || !categories?.length) {
         reponse.status(400).json({ erreur: "Titre, artiste ou catégorie vide" });
     } else {
         await runMongoQuery(async (dbo) => {
             id = (
                 await dbo
                     .collection("repertoire")
-                    .insertOne({ titre, artiste, categorie })
+                    .insertOne({ titre, artiste, categories })
             ).insertedId;
         });
 
@@ -66,7 +66,7 @@ app.post("/api/repertoire/pieces", async (requete, reponse) => {
 app.put("/api/repertoire/pieces/:id", async (requete, reponse) => {
     let musique = null;
     let { id } = requete.params;
-    const { titre, artiste, categorie } = requete.body;
+    const { titre, artiste, categories } = requete.body;
     let idEstBonFormat = true;
 
     try {
@@ -76,7 +76,7 @@ app.put("/api/repertoire/pieces/:id", async (requete, reponse) => {
         idEstBonFormat = false;
     }
 
-    if (!titre && !artiste && !categorie) {
+    if (!titre && !artiste && !categories?.length) {
         reponse
             .status(400)
             .json({ erreur: "Titre, artiste et/ou catégorie doit être rempli" });
@@ -84,7 +84,7 @@ app.put("/api/repertoire/pieces/:id", async (requete, reponse) => {
         let update = {};
         titre ? (update["titre"] = titre) : null;
         artiste ? (update["artiste"] = artiste) : null;
-        categorie ? (update["categorie"] = categorie) : null;
+        categories?.length ? (update["categories"] = categories) : null;
 
         await runMongoQuery(async (dbo) => {
             musique = await dbo
