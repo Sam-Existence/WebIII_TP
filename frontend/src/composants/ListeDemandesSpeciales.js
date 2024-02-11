@@ -2,7 +2,7 @@ import React from "react";
 import Table from 'react-bootstrap/Table';
 import { RangeeDemandeSpeciale } from "./RangeeDemandeSpeciale";
 
-export const ListeDemandesSpeciales = ({ demandesSpeciales }) => {
+export const ListeDemandesSpeciales = ({ demandesSpeciales, buttons=false }) => {
     let tbody = <></>;
     if (demandesSpeciales?.length) {
         tbody = 
@@ -12,6 +12,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales }) => {
                         <RangeeDemandeSpeciale 
                             demandeSpeciale={demandeSpeciale}
                             key={demandeSpeciale._id}
+                            buttons={buttons}
                         />
                     )
                 }
@@ -25,6 +26,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales }) => {
                     <th>Nom</th>
                     <th>Nombre de pièces</th>
                     <th>Statut</th>
+                    {buttons ? <th></th> : <></>}
                 </tr>
             </thead>
             {tbody}
