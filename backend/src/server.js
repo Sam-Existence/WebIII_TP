@@ -151,10 +151,10 @@ app.get("/api/repertoire/pieces/top/:quantite", async (requete, reponse) => {
                 },
                 {
                     $group: {
-                        _id: { $first: "$piece._id"},
-                        titre: { $first: "$piece.titre" },
-                        artiste: { $first: "$piece.artiste" },
-                        categorie: { $first: "$piece.categorie" },
+                        _id: { $first: "$piece._id" },
+                        titre: { $first: { $first: "$piece.titre" } },
+                        artiste: { $first: { $first: "$piece.artiste" } },
+                        categorie: { $first: { $first: "$piece.categorie" } },
                         count: { $sum: 1 },
                     },
                 },
