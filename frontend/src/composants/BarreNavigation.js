@@ -4,6 +4,7 @@ import {
     Nav,
     Container
 } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap'
 
 export const BarreNavigation = ({ type="client" }) => {
     let navbarElements;
@@ -12,9 +13,9 @@ export const BarreNavigation = ({ type="client" }) => {
         case "client":
             navbarElements = 
             <>
-                <Nav.Link href="/">Accueil</Nav.Link>
-                <Nav.Link href="/repertoire">Liste de répertoire</Nav.Link>
-                <Nav.Link href="/demandes-speciales">Demandes spéciales</Nav.Link>
+                <LinkContainer to="/"><Nav.Link>Accueil</Nav.Link></LinkContainer>
+                <LinkContainer to="/repertoire"><Nav.Link>Répertoire</Nav.Link></LinkContainer>
+                <LinkContainer to="/demandes-speciales"><Nav.Link>Demandes spéciales</Nav.Link></LinkContainer>
             </>
             break;
         
@@ -22,7 +23,8 @@ export const BarreNavigation = ({ type="client" }) => {
             navbarElements = 
             <>
                 <Nav.Link href="/admin">Accueil</Nav.Link>
-                <Nav.Link href="/admin/repertoire">Liste de répertoire</Nav.Link>
+                <LinkContainer to="/admin/repertoire"><Nav.Link>Répertoire</Nav.Link></LinkContainer>
+                <LinkContainer to="/admin/demandes-speciales"><Nav.Link>Demandes spéciales</Nav.Link></LinkContainer>
             </>
             break;
             

@@ -13,7 +13,7 @@ export const PageRepertoire = () => {
 
     return (
         <main>
-            <h2 className="text-center">Liste de répertoire</h2>
+            <h2 className="text-center">Répertoire</h2>
             <TableauRepertoire repertoires={repertoires} />
         </main>
     );
