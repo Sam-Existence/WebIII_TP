@@ -11,6 +11,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales }) => {
                     demandesSpeciales.map(demandeSpeciale => 
                         <RangeeDemandeSpeciale 
                             demandeSpeciale={demandeSpeciale}
+                            key={demandeSpeciale._id}
                         />
                     )
                 }

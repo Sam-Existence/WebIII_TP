@@ -14,6 +14,7 @@ export const BarreNavigation = ({ type="client" }) => {
             <>
                 <Nav.Link href="/">Accueil</Nav.Link>
                 <Nav.Link href="/repertoire">Liste de répertoire</Nav.Link>
+                <Nav.Link href="/demandes-speciales">Demandes spéciales</Nav.Link>
             </>
             break;
         
