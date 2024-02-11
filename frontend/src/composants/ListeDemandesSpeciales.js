@@ -1,8 +1,37 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import { RangeeDemandeSpeciale } from "./RangeeDemandeSpeciale";
+import { Button } from "react-bootstrap";
 
-export const ListeDemandesSpeciales = ({ demandesSpeciales, buttons=false }) => {
+export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton="client" }) => {
+    const BouttonConsulter = ({id}) => {
+        let lien;
+
+        switch (typeButton) {
+            case "admin":
+                lien = `/admin/demandes-speciales/${id}`;
+                break;
+
+            case "client":
+                lien = `/demandes-speciales/${id}`;
+                break;
+
+            default:
+                lien = `/demandes-speciales/${id}`;
+                break;
+        }
+
+        return(
+            <Button
+                variant="primary"
+                type="button"
+                href={lien}
+            >
+                Consulter
+            </Button>
+        );
+    }
+
     let tbody = <></>;
     if (demandesSpeciales?.length) {
         tbody = 
@@ -12,7 +41,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, buttons=false }) => 
                         <RangeeDemandeSpeciale 
                             demandeSpeciale={demandeSpeciale}
                             key={demandeSpeciale._id}
-                            buttons={buttons}
+                            Button={() => <BouttonConsulter id={demandeSpeciale._id} />}
                         />
                     )
                 }
@@ -26,7 +55,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, buttons=false }) => 
                     <th>Nom</th>
                     <th>Nombre de pièces</th>
                     <th>Statut</th>
-                    {buttons ? <th></th> : <></>}
+                    {<th></th>}
                 </tr>
             </thead>
             {tbody}

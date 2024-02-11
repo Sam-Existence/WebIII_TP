@@ -22,7 +22,7 @@ export const PageDemandeSpeciales = () => {
     return (
         <main>
             <h2 className="text-center">Demandes spéciales{ actives ? " actives" : null }</h2>
-            <ListeDemandesSpeciales demandesSpeciales={demandesSpeciales} buttons />
+            <ListeDemandesSpeciales demandesSpeciales={demandesSpeciales} typeButton="admin" />
         </main>
     );
 };
