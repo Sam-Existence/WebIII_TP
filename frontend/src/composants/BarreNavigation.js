@@ -2,9 +2,11 @@ import React from "react";
 import {
     Navbar,
     Nav,
-    Container
+    Container,
+    NavDropdown
 } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const BarreNavigation = ({ type="client" }) => {
     let navbarElements;
@@ -23,8 +25,15 @@ export const BarreNavigation = ({ type="client" }) => {
             navbarElements = 
             <>
                 <Nav.Link href="/admin">Accueil</Nav.Link>
-                <LinkContainer to="/admin/repertoire"><Nav.Link>Répertoire</Nav.Link></LinkContainer>
-                <LinkContainer to="/admin/demandes-speciales"><Nav.Link>Demandes spéciales</Nav.Link></LinkContainer>
+                <NavDropdown title="Répertoire">
+                    <LinkContainer to="/admin/repertoire"><NavDropdown.Item>Lister</NavDropdown.Item></LinkContainer>
+                    <LinkContainer to="/admin/repertoire/ajouter"><NavDropdown.Item>Ajouter</NavDropdown.Item></LinkContainer>
+                    <LinkContainer to="/admin/repertoire/top-5"><NavDropdown.Item>Top 5</NavDropdown.Item></LinkContainer>
+                </NavDropdown>
+                <NavDropdown title="Demandes spéciales">
+                    <NavDropdown.Item as={Link} to="/admin/demandes-speciales">Lister toutes</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={{path: "/admin/demandes-speciales", search: "?actives=true"}}>Lister actives</NavDropdown.Item>
+                </NavDropdown>
             </>
             break;
             
