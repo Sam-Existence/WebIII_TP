@@ -7,6 +7,7 @@ import {
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
+import { Langages } from "./Langages";
 
 export const BarreNavigation = ({ type = "client" }) => {
     let navbarElements;
@@ -51,6 +52,7 @@ export const BarreNavigation = ({ type = "client" }) => {
                         {navbarElements}
                     </Nav>
                 </Navbar.Collapse>
+                <Langages />
             </Container>
         </Navbar>
     );
