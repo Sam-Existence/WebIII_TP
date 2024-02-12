@@ -196,7 +196,7 @@ app.get("/api/demandes-speciales", async (requete, reponse) => {
 app.post('/api/demandes-speciales', async (requete, reponse) => {
     let { nom, pieces } = requete.body;
     let id = null;
-    if(!nom || !pieces?.length) {
+    if (!nom || !pieces?.length) {
         reponse.status(400).json({ 'erreur': 'La demande spéciale n\'a pas un format correct' });
     } else {
         let idPiecesEstBonFormat = true;
@@ -204,22 +204,73 @@ app.post('/api/demandes-speciales', async (requete, reponse) => {
             pieces = pieces.map(piece => new ObjectId(piece));
         }
         catch (erreur) {
-            reponse.status(400).json({'erreur': 'L\'id des pièces n\'est pas au bon format.'});
+            reponse.status(400).json({ 'erreur': 'L\'id des pièces n\'est pas au bon format.' });
             idPiecesEstBonFormat = false;
         }
-        if(idPiecesEstBonFormat) {
+        if (idPiecesEstBonFormat) {
             await runMongoQuery(async dbo => {
                 id = (await dbo.collection('demandesSpeciales')
-                        .insertOne(
-                            {
-                                nom,
-                                pieces,
-                                active: true
-                            }
-                        ))
+                    .insertOne(
+                        {
+                            nom,
+                            pieces,
+                            active: true
+                        }
+                    ))
                     .insertedId;
             });
             reponse.status(201).json({ 'uri': `/api/demandes-speciales/${id}` });
+        }
+    }
+});
+
+app.put('/api/demandes-speciales/:id', async (requete, reponse) => {
+    let demandeSpeciale = null;
+    let { nom, pieces } = requete.body;
+    let { id } = requete.params;
+    let idEstBonFormat = true;
+
+    try {
+        id = new ObjectId(id);
+    } catch (erreur) {
+        reponse.status(400).json({ erreur: "Id au mauvais format" });
+        idEstBonFormat = false;
+    }
+
+    if (!nom || !pieces?.length) {
+        reponse
+            .status(400)
+            .json({ erreur: 'La demande spéciale n\'a pas un format correct' });
+    } else if (idEstBonFormat) {
+        let idPiecesEstBonFormat = true;
+        try {
+            pieces = pieces.map(piece => new ObjectId(piece));
+        }
+        catch (erreur) {
+            reponse.status(400).json({ 'erreur': 'L\'id des pièces n\'est pas au bon format.' });
+            idPiecesEstBonFormat = false;
+        }
+
+        if (idPiecesEstBonFormat) {
+            let update = {};
+            nom ? (update["nom"] = nom) : null;
+            pieces ? (update["pieces"] = pieces) : null;
+
+            await runMongoQuery(async (dbo) => {
+                demandeSpeciale = await dbo
+                    .collection("demandesSpeciales")
+                    .findOneAndUpdate(
+                        { _id: new ObjectId(id) },
+                        { $set: update },
+                        { returnDocument: "after" }
+                    );
+            });
+
+            if (!demandeSpeciale) {
+                reponse.status(404).json({ erreur: "Demande spéciale non trouvée" });
+            } else {
+                reponse.status(200).json(demandeSpeciale);
+            }
         }
     }
 });
@@ -237,19 +288,18 @@ app.get('/api/demandes-speciales/active', async (requete, reponse) => {
 
 app.get('/api/demandes-speciales/:id', async (requete, reponse) => {
     let demandeSpeciale = null;
-    let {id} = requete.params;
+    let { id } = requete.params;
     let idEstBonFormat = true;
 
     try {
         id = new ObjectId(id);
-    } 
+    }
     catch (erreur) {
-        reponse.status(400).json({'erreur': 'Id au mauvais format'});
+        reponse.status(400).json({ 'erreur': 'Id au mauvais format' });
         idEstBonFormat = false;
     }
 
-    if(idEstBonFormat)
-    {
+    if (idEstBonFormat) {
         await runMongoQuery(async (dbo) => {
             demandeSpeciale = await dbo.collection('demandesSpeciales').aggregate([
                 {
@@ -266,8 +316,8 @@ app.get('/api/demandes-speciales/:id', async (requete, reponse) => {
             ]).toArray();
         });
 
-        if(!demandeSpeciale) {
-            reponse.status(404).json({'erreur': 'Demande spéciale non trouvée'});
+        if (!demandeSpeciale) {
+            reponse.status(404).json({ 'erreur': 'Demande spéciale non trouvée' });
         } else {
             reponse.status(200).json(demandeSpeciale[0]);
         }
@@ -287,7 +337,7 @@ app.put('/api/demandes-speciales/:id/desactiver', async (requete, reponse) => {
     }
 
     if (idEstBonFormat) {
-        let update = {active: false};
+        let update = { active: false };
 
         await runMongoQuery(async (dbo) => {
             demandeSpeciale = await dbo
@@ -325,19 +375,19 @@ app.post('/api/demandes-speciales/:id/pieces', async (requete, reponse) => {
         try {
             idPiecesEstBonFormat = !!piece;
             piece = new ObjectId(piece);
-        } 
+        }
         catch (erreur) {
             idPiecesEstBonFormat = false;
         }
-        if(idPiecesEstBonFormat) {
-            let update = {active: false};
+        if (idPiecesEstBonFormat) {
+            let update = { active: false };
 
             await runMongoQuery(async (dbo) => {
                 demandeSpeciale = await dbo
                     .collection("demandesSpeciales")
                     .findOneAndUpdate(
                         { _id: new ObjectId(id) },
-                        { $push: {'pieces': piece} },
+                        { $push: { 'pieces': piece } },
                         { returnDocument: "after" }
                     );
             });
@@ -347,7 +397,7 @@ app.post('/api/demandes-speciales/:id/pieces', async (requete, reponse) => {
                 reponse.status(200).json(demandeSpeciale);
             }
         } else {
-            reponse.status(400).json({'erreur': 'L\'id de la pièce est au mauvais format'});
+            reponse.status(400).json({ 'erreur': 'L\'id de la pièce est au mauvais format' });
         }
     }
 });
