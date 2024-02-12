@@ -32,7 +32,7 @@ export const BarreNavigation = ({ type="client" }) => {
                 </NavDropdown>
                 <NavDropdown title="Demandes spéciales">
                     <NavDropdown.Item as={Link} to="/admin/demandes-speciales">Lister toutes</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to={{path: "/admin/demandes-speciales", search: "?actives=true"}}>Lister actives</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={{pathname: "/admin/demandes-speciales", search: "?actives=true"}}>Lister actives</NavDropdown.Item>
                 </NavDropdown>
             </>
             break;
