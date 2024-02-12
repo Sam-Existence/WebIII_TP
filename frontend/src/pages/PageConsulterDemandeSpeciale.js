@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { DemandeSpeciale } from '../composants/DemandeSpeciale';
 import Button from 'react-bootstrap/Button';
+import { useTranslation } from "react-i18next";
 
 export const PageConsulterDemandeSpeciale = () => {
+    const { t } = useTranslation();
     const { id } = useParams();
 
     const [active, setActive] = useState(false);
@@ -28,10 +30,10 @@ export const PageConsulterDemandeSpeciale = () => {
 
     return (
         <main>
-            <h2 className="text-center">Consulter demande spéciale</h2>
+            <h2 className="text-center">{t("Consulter demande spéciale")}</h2>
             <DemandeSpeciale demandeSpeciale={demandeSpeciale} />
-            <p>Status : {active ? "Active" : "Inactive"} <Button hidden={!active} onClick={desactiver} >Désactiver</Button></p>
-            <Button variant="danger" onClick={() => navigate(-1)}>Retourner</Button>
+            <p>Status : {active ? "Active" : "Inactive"} <Button hidden={!active} onClick={desactiver} >{t("Désactiver")}</Button></p>
+            <Button variant="danger" onClick={() => navigate(-1)}>{t("retourner")}</Button>
         </main>
     );
 }

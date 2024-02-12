@@ -1,7 +1,9 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 export const RangeePieceDemandeSpeciale = ({ piece, typeBouton = "supprimer", handleModification }) => {
+    const { t } = useTranslation();
     let bouton;
     const categories = piece.categories.reduce((acc, categorie, index) =>
         acc + ((piece.categories.length <= index + 1) ? categorie : `${categorie}, `)
@@ -14,7 +16,7 @@ export const RangeePieceDemandeSpeciale = ({ piece, typeBouton = "supprimer", ha
                     type="button"
                     onClick={() => handleModification(piece)}
                 >
-                    Supprimer
+                    { t("supprimer") }
                 </Button>
             break;
 
@@ -25,7 +27,7 @@ export const RangeePieceDemandeSpeciale = ({ piece, typeBouton = "supprimer", ha
                     type="button"
                     onClick={() => handleModification(piece)}
                 >
-                    Ajouter
+                    { t("ajouter") }
                 </Button>
             break;
 

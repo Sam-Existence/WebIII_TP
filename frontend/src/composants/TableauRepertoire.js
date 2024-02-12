@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Table from 'react-bootstrap/Table';
 import { RangeeRepertoire } from "./RangeeRepertoire";
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
+import { useTranslation } from "react-i18next";
 
 export const TableauRepertoire = ({ repertoires, buttons = false }) => {
+    const { t } = useTranslation();
     const [repertoiresTries, setRepertoiresTries] = useState();
     const [repertoireNonAplati, setRepertoireNonAplati] = useState();
     const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties] = useState();
@@ -75,7 +77,7 @@ export const TableauRepertoire = ({ repertoires, buttons = false }) => {
                 <tr>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Titre</div>
+                            <div className="p-2">{ t("titre") }</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParTitreCroissant} />
                                 <SlArrowDown onClick={trierParTitreDecroissant} />
@@ -84,7 +86,7 @@ export const TableauRepertoire = ({ repertoires, buttons = false }) => {
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Artiste</div>
+                            <div className="p-2">{ t("artiste") }</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParArtisteCroissant} />
                                 <SlArrowDown onClick={trierParArtisteDecroissant} />
@@ -93,7 +95,7 @@ export const TableauRepertoire = ({ repertoires, buttons = false }) => {
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Catégories</div>
+                            <div className="p-2">{("categories")}</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParCategorieCroissant} />
                                 <SlArrowDown onClick={trierParCategorieDecroissant} />

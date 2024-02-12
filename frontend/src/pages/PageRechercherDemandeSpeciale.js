@@ -3,8 +3,10 @@ import { ListeDemandesSpeciales } from "../composants/ListeDemandesSpeciales";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import { useTranslation } from "react-i18next";
 
 export const PageRechercherDemandeSpeciales = () => {
+    const { t } = useTranslation();
     let [demandesSpeciales, setDemandesSpeciales] = useState([]);
     const [nom, setNom] = useState("");
     const [demandesSpecialesFiltrees, setDemandesSpecialesFiltrees] = useState([]);
@@ -29,13 +31,13 @@ export const PageRechercherDemandeSpeciales = () => {
 
     return (
         <main>
-            <h2 className="text-center">Demandes Spéciales</h2>
+            <h2 className="text-center">{t("Demandes Spéciales")}</h2>
             <Container className="d-flex align-items-end px-0">
                 <Form.Group className="mb-2 flex-grow-1" controlId="rechercheDemandeSpeciale.Nom">
-                    <Form.Label>Nom</Form.Label>
+                    <Form.Label>{t("nom")}</Form.Label>
                     <Form.Control type="text" placeholder="Jean Peuplu" onKeyUp={handleRecherche} />
                 </Form.Group>
-                <Button className="mb-2" href={`/demandes-speciales/ajouter?nom=${nom}`} disabled={!nom} type="submit">Créer</Button>
+                <Button className="mb-2" href={`/demandes-speciales/ajouter?nom=${nom}`} disabled={!nom} type="submit">{t("creer")}</Button>
             </Container>
 
             <ListeDemandesSpeciales demandesSpeciales={demandesSpecialesFiltrees} />

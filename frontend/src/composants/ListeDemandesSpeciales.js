@@ -2,8 +2,10 @@ import React from "react";
 import Table from 'react-bootstrap/Table';
 import { RangeeDemandeSpeciale } from "./RangeeDemandeSpeciale";
 import Button from "react-bootstrap/Button";
+import { useTranslation } from "react-i18next";
 
 export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton = "client" }) => {
+    const { t } = useTranslation();
     const BouttonConsulter = ({ id }) => {
         let lien;
 
@@ -27,7 +29,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton = "client
                 type="button"
                 href={lien}
             >
-                Consulter
+                { t("consulter" )}
             </Button>
         );
     }
@@ -52,9 +54,9 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton = "client
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Nombre de pièces</th>
-                    <th>Statut</th>
+                    <th>{ t("nom") }</th>
+                    <th>{ t("nombreDePieces") }</th>
+                    <th>{ t("statut") }</th>
                     {<th></th>}
                 </tr>
             </thead>

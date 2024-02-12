@@ -1,8 +1,10 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
+import { useTranslation } from "react-i18next";
 
 export const PanneauFiltrerDemandesSpeciales = ({ demandesSpeciales }) => {
+    const { t } = useTranslation();
     return (
         <Form>
             <Dropdown id="categories">

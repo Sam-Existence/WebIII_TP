@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { RangeePieceDemandeSpeciale } from "./RangeePieceDemandeSpeciale";
+import { useTranslation } from "react-i18next";
 
 export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton = "supprimer", handleModification }) => {
+    const { t } = useTranslation();
     const [repertoiresTries, setRepertoiresTries] = useState();
     const [repertoireNonAplati, setRepertoireNonAplati] = useState();
     const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties] = useState();
@@ -76,7 +78,7 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton = "supprimer", h
                 <tr>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Titre</div>
+                            <div className="p-2">{ t("titre") }</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParTitreCroissant} />
                                 <SlArrowDown onClick={trierParTitreDecroissant} />
@@ -85,7 +87,7 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton = "supprimer", h
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Artiste</div>
+                            <div className="p-2">{ t("artiste") }</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParArtisteCroissant} />
                                 <SlArrowDown onClick={trierParArtisteDecroissant} />
@@ -94,7 +96,7 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton = "supprimer", h
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Catégorie</div>
+                            <div className="p-2">{ t("categories") }</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParCategorieCroissant} />
                                 <SlArrowDown onClick={trierParCategorieDecroissant} />

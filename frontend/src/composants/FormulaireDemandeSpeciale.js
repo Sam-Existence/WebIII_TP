@@ -3,8 +3,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { ListePiecesDemandeSpeciale } from "./ListePiecesDemandeSpeciale";
+import { useTranslation } from "react-i18next";
 
 export const FormulaireDemandeSpeciale = ({ handleSubmit, status, demandeSpeciale, name='' }) => {
+    const { t } = useTranslation();
     const [nom, setNom] = useState(name);
     const [pieces, setPieces] = useState([]);
     const [repertoires, setRepertoires] = useState();
@@ -38,16 +40,16 @@ export const FormulaireDemandeSpeciale = ({ handleSubmit, status, demandeSpecial
             pieces: pieces.map(piece => piece._id)
         })}>
             <Form.Group className="mb-3" controlId="nom">
-                <Form.Label>Nom</Form.Label>
+                <Form.Label>{ t("nom") }</Form.Label>
                 <Form.Control type="text" value={nom} onChange={(e) => setNom(e.target.value)} />
             </Form.Group>
             <ListePiecesDemandeSpeciale pieces={pieces} typeBouton="supprimer" handleModification={handleSupression} />
             <Button className="mb-3" variant="primary" type="submit">
-                Soumettre
+                { t("soumettre") }
             </Button>
             &nbsp;
             <Button className="mb-3" variant="danger" type="button" onClick={() => navigate("/demandes-speciales")}>
-                Annuler
+                { t("annuler") }
             </Button>
             <p className={status ? "" : "d-none"}>{status}</p>
 

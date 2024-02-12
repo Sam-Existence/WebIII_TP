@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { FomulaireRepertoire } from "../composants/FormulaireRepertoire";
+import { useTranslation } from "react-i18next";
 
 export const PageModifierRepertoire = () => {
+    const { t } = useTranslation();
     const { id } = useParams();
 
     const [status, setStatus] = useState('');
@@ -26,15 +28,15 @@ export const PageModifierRepertoire = () => {
         });
 
         if (reponse.status === 200) {
-            setStatus(`Le répertoire ${repertoire._id} a été mis à jour`);
+            setStatus(t("Le répertoire {{id}} a été mis à jour", { id: repertoire._id}));
         } else {
-            setStatus("Erreur, le répertoire n'a pas été mis à jour");
+            setStatus(t("Erreur, le répertoire n'a pas été mis à jour") );
         }
     }
 
     return (
         <main>
-            <h2 className="text-center">Modifier un répertoire</h2>
+            <h2 className="text-center">{t("Modifier un répertoire")}</h2>
             <FomulaireRepertoire handleSubmit={handleSubmit} status={status} repertoire={repertoire} />
         </main>
     );

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useTranslation } from "react-i18next";
 
 export const ModalSupression = ({ show, repertoire, handleClose, handleSupression }) => {
+    const { t } = useTranslation();
     const [status, setStatus] = useState('');
 
     const handleConfirmation = async () => {
@@ -19,7 +21,7 @@ export const ModalSupression = ({ show, repertoire, handleClose, handleSupressio
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Voulez-vous vraiment supprimer ce répertoire ?</Modal.Title>
+                <Modal.Title>{ t("confirmationSuppressionRepertoire") }</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <p className="text-center">{repertoire.titre}</p>
@@ -29,10 +31,10 @@ export const ModalSupression = ({ show, repertoire, handleClose, handleSupressio
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="success" onClick={handleConfirmation}>
-                    Oui
+                    { t("oui") }
                 </Button>
                 <Button variant="danger" onClick={handleClose}>
-                    Non
+                    { t("non") }
                 </Button>
             </Modal.Footer>
         </Modal>

@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const RangeeTopPiece = ({ numero, repertoire }) => {
+    const { t } = useTranslation();
     return (
         <tr>
             <td>{numero}</td>
