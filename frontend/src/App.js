@@ -17,6 +17,7 @@ import { PageConsulterDemandeSpeciale } from "./pages/PageConsulterDemandeSpecia
 import { PageConsulterTop5 } from "./pages/PageConsulterTop5";
 import { PageDemandeSpeciales } from "./pages/PageDemandesSpeciales";
 import { PageRechercherDemandeSpeciales } from "./pages/PageRechercherDemandeSpeciale";
+import { PageAjouterDemandeSpeciale } from "./pages/PageAjouterDemandeSpeciale";
 
 function App() {
   return (
