@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-import { FomulaireRepertoire } from "../composants/FomulaireRepertoire";
+import { FomulaireRepertoire } from "../composants/FormulaireRepertoire";
 
 export const PageAjouterRepertoire = () => {
     const [status, setStatus] = useState('');

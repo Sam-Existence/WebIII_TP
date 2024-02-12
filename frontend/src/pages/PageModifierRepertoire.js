@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { FomulaireRepertoire } from "../composants/FomulaireRepertoire";
+import { FomulaireRepertoire } from "../composants/FormulaireRepertoire";
 
 export const PageModifierRepertoire = () => {
     const { id } = useParams();
