@@ -21,7 +21,7 @@ export const FormulaireDemandeSpeciale = ({ handleSubmit, status, demandeSpecial
     useEffect( () => {
         setNom(demandeSpeciale ? demandeSpeciale.nom : name);
         setPieces(demandeSpeciale ? demandeSpeciale.pieces : []);
-    }, [demandeSpeciale]);
+    }, [demandeSpeciale, name]);
 
     useEffect(() => {
         let nouveauRepertoires = repertoires?.filter(piece => !pieces.map(p => p._id).includes(piece._id));
@@ -29,7 +29,7 @@ export const FormulaireDemandeSpeciale = ({ handleSubmit, status, demandeSpecial
     },[repertoires, pieces]);
 
     const handleAjout = (piece) => setPieces([ ...pieces, piece]);
-    const handleSupression = (piece) => setPieces(pieces.filter(p => p._id != piece._id));
+    const handleSupression = (piece) => setPieces(pieces.filter(p => p._id !== piece._id));
 
     return (
         <Form onSubmit={(e) => handleSubmit(e, {

@@ -8,7 +8,7 @@ export const PageAjouterDemandeSpeciale = () => {
 
     const handleSubmit = async (e, demandeSpeciale) => {
         e.preventDefault();
-        console.log(demandeSpeciale);
+        
         let reponse = await fetch('/api/demandes-speciales', {
             method: 'POST',
             body: JSON.stringify(demandeSpeciale),

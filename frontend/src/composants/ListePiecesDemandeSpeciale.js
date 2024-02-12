@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
-import { RangeeRepertoire } from "./RangeeRepertoire";
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
-import { Button } from "react-bootstrap";
 import { RangeePieceDemandeSpeciale } from "./RangeePieceDemandeSpeciale";
 
 export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", handleModification }) => {
     const [repertoiresTries, setRepertoiresTries] = useState();
     const [repertoireNonAplati, setRepertoireNonAplati] = useState();
     const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties ] = useState();
-    
-    
 
-    const handleSupression = repertoireASupprimer => {
-        const nouveauRepertoires = repertoiresTries.filter(repertoire => repertoire._id !== repertoireASupprimer._id);
-        setRepertoiresTries(nouveauRepertoires);
-    }
+    useEffect(() => {
+        setRepertoiresTries(null);
+        setRepertoireNonAplati(null);
+        setRepertoiresAvecCategoriesAplaties(null);
+    }, [pieces])
 
     const trierParTitreCroissant = () => {
         const nouveauRepertoires = repertoireNonAplati.toSorted((a, b) => a.titre.localeCompare(b.titre));

@@ -36,7 +36,7 @@ export const PageRechercherDemandeSpeciales = () => {
                     <Form.Label>Nom</Form.Label>
                     <Form.Control type="text" placeholder="Jean Peuplu" onKeyUp={handleRecherche} />
                 </Form.Group>
-                <Button className="mb-2" href={`/demandes-speciales/ajouter?nom="${nom}"`} disabled={!nom} type="submit">Créer</Button>
+                <Button className="mb-2" href={`/demandes-speciales/ajouter?nom=${nom}`} disabled={!nom} type="submit">Créer</Button>
             </Container>
             
             <ListeDemandesSpeciales demandesSpeciales={demandesSpecialesFiltrees} />
