@@ -5,10 +5,10 @@ import { useTranslation } from "react-i18next";
 
 export const PageAjouterDemandeSpeciale = () => {
     let [searchParams] = useSearchParams();
-    const [status, setStatus] = useState('');
+        const { t } = useTranslation();
+        const [status, setStatus] = useState('');
 
     const handleSubmit = async (e, demandeSpeciale) => {
-        const { t } = useTranslation();
         e.preventDefault();
 
         let reponse = await fetch('/api/demandes-speciales', {
