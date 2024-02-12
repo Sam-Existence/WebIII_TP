@@ -19,7 +19,7 @@
     "statut": "Status",
     "titre": "Title",
     "artiste": "Artist",
-    "categories": "Catagories",
+    "categories": "Categories",
     "#": "#",
     "nombre": "Number",
     "confirmationSuppressionRepertoire": "Do you really want to delete this song?",
@@ -49,5 +49,6 @@
     "Le répertoire {{id}} a été mis à jour": "The song {{ id }} was updated",
     "Erreur, le répertoire n'a pas été mis à jour": "Error, the song was not updated",
     "Modifier un répertoire": "Edit a song",
-    "creer": "Create"
+    "creer": "Create",
+    "Erreur, le répertoire n'a pas été ajoutée": "Error, the song was not added"
 }

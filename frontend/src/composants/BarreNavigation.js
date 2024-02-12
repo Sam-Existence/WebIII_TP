@@ -28,12 +28,12 @@ export const BarreNavigation = ({ type = "client" }) => {
             navbarElements =
                 <>
                     <Nav.Link href="/admin">{ t("accueil") }</Nav.Link>
-                    <NavDropdown title="Répertoire">
+                    <NavDropdown title={t("repertoire")}>
                         <LinkContainer to="/admin/repertoire"><NavDropdown.Item>{ t("lister") }</NavDropdown.Item></LinkContainer>
                         <LinkContainer to="/admin/repertoire/ajouter"><NavDropdown.Item>{ t("ajouter") }</NavDropdown.Item></LinkContainer>
                         <LinkContainer to="/admin/repertoire/top-5"><NavDropdown.Item>{ t("top5") }</NavDropdown.Item></LinkContainer>
                     </NavDropdown>
-                    <NavDropdown title="Demandes spéciales">
+                    <NavDropdown title={t("Demandes spéciales")}>
                         <NavDropdown.Item as={Link} to="/admin/demandes-speciales">{ t("listerToutes") }</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to={{ pathname: "/admin/demandes-speciales", search: "?actives=true" }}>{ t("listerActives") }</NavDropdown.Item>
                     </NavDropdown>

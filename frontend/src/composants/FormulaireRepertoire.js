@@ -36,11 +36,11 @@ export const FomulaireRepertoire = ({ handleSubmit, status = "", repertoire = nu
             categories: categories.filter(c => c.trim())
         })}>
             <Form.Group className="mb-3" controlId="titre">
-                <Form.Label>Titre</Form.Label>
+                <Form.Label>{t("titre")}</Form.Label>
                 <Form.Control type="text" value={titre} onChange={(e) => setTitre(e.target.value)} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="artiste">
-                <Form.Label>Artiste</Form.Label>
+                <Form.Label>{t("artiste")}</Form.Label>
                 <Form.Control type="text" value={artiste} onChange={(e) => setArtiste(e.target.value)} />
             </Form.Group>
             <Form.Group controlId="categorie">

@@ -31,7 +31,7 @@ export const PageRechercherDemandeSpeciales = () => {
 
     return (
         <main>
-            <h2 className="text-center">{t("Demandes Spéciales")}</h2>
+            <h2 className="text-center">{t("Demandes spéciales")}</h2>
             <Container className="d-flex align-items-end px-0">
                 <Form.Group className="mb-2 flex-grow-1" controlId="rechercheDemandeSpeciale.Nom">
                     <Form.Label>{t("nom")}</Form.Label>

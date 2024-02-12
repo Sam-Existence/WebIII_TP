@@ -95,7 +95,7 @@ export const TableauRepertoire = ({ repertoires, buttons = false }) => {
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">{("categories")}</div>
+                            <div className="p-2">{t("categories")}</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParCategorieCroissant} />
                                 <SlArrowDown onClick={trierParCategorieDecroissant} />

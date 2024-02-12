@@ -49,5 +49,6 @@
     "Le répertoire {{id}} a été mis à jour": "Le répertoire {{ id }} a été mis à jour",
     "Erreur, le répertoire n'a pas été mis à jour": "Erreur, le répertoire n'a pas été mis à jour",
     "Modifier un répertoire": "Modifier un répertoire",
-    "creer": "Créer"
+    "creer": "Créer",
+    "Erreur, le répertoire n'a pas été ajoutée": "Erreur, le répertoire n'a pas été ajoutée"
 }
