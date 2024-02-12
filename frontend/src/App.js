@@ -18,6 +18,7 @@ import { PageConsulterTop5 } from "./pages/PageConsulterTop5";
 import { PageDemandeSpeciales } from "./pages/PageDemandesSpeciales";
 import { PageRechercherDemandeSpeciales } from "./pages/PageRechercherDemandeSpeciale";
 import { PageAjouterDemandeSpeciale } from "./pages/PageAjouterDemandeSpeciale";
+import { PageModifierDemandeSpeciale } from "./pages/PageModifierDemandeSpeciale";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route index element={<PageAccueil />} />
             <Route path="repertoire" element={<PageRepertoire />} />
             <Route path="demandes-speciales" element={<PageRechercherDemandeSpeciales />} />
+            <Route path="demandes-speciales/:id" element={<PageModifierDemandeSpeciale />} />
             <Route path="demandes-speciales/ajouter" element={<PageAjouterDemandeSpeciale />} />
           </Route>
           <Route path="/admin" element={<GabaritAdmin />}>
