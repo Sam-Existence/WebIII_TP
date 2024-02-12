@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { DemandeSpeciale } from '../composants/DemandeSpeciale';
 import Button from 'react-bootstrap/Button';
@@ -12,7 +12,7 @@ export const PageConsulterDemandeSpeciale = () => {
     useEffect(() => {
         const chercherDemandeSpeciale = async (_id) => {
             const body = await fetch(`/api/demandes-speciales/${_id}`).then(resultat => resultat.json());
-            setDemandeSpeciale(body)
+            setDemandeSpeciale(body);
             setActive(body.active);
         };
         chercherDemandeSpeciale(id);
@@ -26,11 +26,11 @@ export const PageConsulterDemandeSpeciale = () => {
         }
     }
 
-    return(
+    return (
         <main>
             <h2 className="text-center">Consulter demande spéciale</h2>
             <DemandeSpeciale demandeSpeciale={demandeSpeciale} />
-            <p>Status : {active ? "Active": "Inactive"} <Button hidden={!active} onClick={desactiver} >Désactiver</Button></p>
+            <p>Status : {active ? "Active" : "Inactive"} <Button hidden={!active} onClick={desactiver} >Désactiver</Button></p>
             <Button variant="danger" onClick={() => navigate(-1)}>Retourner</Button>
         </main>
     );

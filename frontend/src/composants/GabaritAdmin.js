@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 export const GabaritAdmin = (props) => {
     return (
         <>
-            <Header type="admin"/>
+            <Header type="admin" />
             <Container className="py-2">
                 <Outlet />
             </Container>

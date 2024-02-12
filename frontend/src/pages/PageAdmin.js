@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { TableauRepertoire } from "../composants/TableauRepertoire";
 
 export const PageAdmin = () => {
@@ -6,7 +6,7 @@ export const PageAdmin = () => {
     useEffect(() => {
         const chercherRepertoires = async () => {
             const body = await fetch('/api/repertoire/pieces').then(resultat => resultat.json());
-            setRepertoires(body)
+            setRepertoires(body);
         };
         chercherRepertoires();
     }, []);

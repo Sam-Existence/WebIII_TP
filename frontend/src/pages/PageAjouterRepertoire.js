@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 
 import { FomulaireRepertoire } from "../composants/FormulaireRepertoire";
 
@@ -26,7 +26,7 @@ export const PageAjouterRepertoire = () => {
     return (
         <main>
             <h2 className="text-center">Ajouter un répertoire</h2>
-            <FomulaireRepertoire handleSubmit={handleSubmit} status={status}/>
+            <FomulaireRepertoire handleSubmit={handleSubmit} status={status} />
         </main>
     );
 }

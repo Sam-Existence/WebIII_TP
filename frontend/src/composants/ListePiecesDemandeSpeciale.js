@@ -3,10 +3,10 @@ import Table from 'react-bootstrap/Table';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { RangeePieceDemandeSpeciale } from "./RangeePieceDemandeSpeciale";
 
-export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", handleModification }) => {
+export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton = "supprimer", handleModification }) => {
     const [repertoiresTries, setRepertoiresTries] = useState();
     const [repertoireNonAplati, setRepertoireNonAplati] = useState();
-    const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties ] = useState();
+    const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties] = useState();
 
     useEffect(() => {
         setRepertoiresTries(null);
@@ -54,9 +54,9 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", han
             repertoire.categories.forEach((categorie, index) => {
                 repertoireEtendu.push(
                     {
-                        _id: repertoire._id, 
-                        titre: repertoire.titre, 
-                        artiste: repertoire.artiste, 
+                        _id: repertoire._id,
+                        titre: repertoire.titre,
+                        artiste: repertoire.artiste,
                         categories: [repertoire.categories[index]]
                     }
                 );
@@ -64,13 +64,13 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", han
             return repertoireEtendu;
         });
         setRepertoiresAvecCategoriesAplaties(nouveauRepertoiresAvecCategoriesAplaties);
-        
+
     }
     if (repertoiresAvecCategoriesAplaties && !repertoiresTries) {
         trierParCategorieCroissant();
     }
 
-    return(
+    return (
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -78,8 +78,8 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", han
                         <div className="d-flex justify-content-between">
                             <div className="p-2">Titre</div>
                             <div className="p-2">
-                                <SlArrowUp onClick={trierParTitreCroissant}/>
-                                <SlArrowDown onClick={trierParTitreDecroissant}/>
+                                <SlArrowUp onClick={trierParTitreCroissant} />
+                                <SlArrowDown onClick={trierParTitreDecroissant} />
                             </div>
                         </div>
                     </th>
@@ -87,8 +87,8 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", han
                         <div className="d-flex justify-content-between">
                             <div className="p-2">Artiste</div>
                             <div className="p-2">
-                                <SlArrowUp onClick={trierParArtisteCroissant}/>
-                                <SlArrowDown onClick={trierParArtisteDecroissant}/>
+                                <SlArrowUp onClick={trierParArtisteCroissant} />
+                                <SlArrowDown onClick={trierParArtisteDecroissant} />
                             </div>
                         </div>
                     </th>
@@ -96,8 +96,8 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", han
                         <div className="d-flex justify-content-between">
                             <div className="p-2">Catégorie</div>
                             <div className="p-2">
-                                <SlArrowUp onClick={trierParCategorieCroissant}/>
-                                <SlArrowDown onClick={trierParCategorieDecroissant}/>
+                                <SlArrowUp onClick={trierParCategorieCroissant} />
+                                <SlArrowDown onClick={trierParCategorieDecroissant} />
                             </div>
                         </div>
                     </th>
@@ -105,8 +105,8 @@ export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton="supprimer", han
                 </tr>
             </thead>
             <tbody>
-                {repertoiresTries?.map(repertoire => 
-                    <RangeePieceDemandeSpeciale 
+                {repertoiresTries?.map(repertoire =>
+                    <RangeePieceDemandeSpeciale
                         key={repertoire._id + repertoire.categories[0]}
                         piece={repertoire}
                         typeBouton={typeBouton}

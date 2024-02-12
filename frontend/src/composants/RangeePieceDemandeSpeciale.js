@@ -1,12 +1,11 @@
 import React from "react";
-import { BoutonsSupressionModification } from "./BoutonsSupressionModification";
 import { Button } from "react-bootstrap";
 
 export const RangeePieceDemandeSpeciale = ({ piece, typeBouton = "supprimer", handleModification }) => {
     let bouton;
-    const categories = piece.categories.reduce((acc, categorie, index) => 
+    const categories = piece.categories.reduce((acc, categorie, index) =>
         acc + ((piece.categories.length <= index + 1) ? categorie : `${categorie}, `)
-    , "");
+        , "");
     switch (typeBouton) {
         case "supprimer":
             bouton =

@@ -8,35 +8,35 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 
-export const BarreNavigation = ({ type="client" }) => {
+export const BarreNavigation = ({ type = "client" }) => {
     let navbarElements;
 
     switch (type) {
         case "client":
-            navbarElements = 
-            <>
-                <LinkContainer to="/"><Nav.Link>Accueil</Nav.Link></LinkContainer>
-                <LinkContainer to="/repertoire"><Nav.Link>Répertoire</Nav.Link></LinkContainer>
-                <LinkContainer to="/demandes-speciales"><Nav.Link>Demandes spéciales</Nav.Link></LinkContainer>
-            </>
+            navbarElements =
+                <>
+                    <LinkContainer to="/"><Nav.Link>Accueil</Nav.Link></LinkContainer>
+                    <LinkContainer to="/repertoire"><Nav.Link>Répertoire</Nav.Link></LinkContainer>
+                    <LinkContainer to="/demandes-speciales"><Nav.Link>Demandes spéciales</Nav.Link></LinkContainer>
+                </>
             break;
-        
+
         case "admin":
-            navbarElements = 
-            <>
-                <Nav.Link href="/admin">Accueil</Nav.Link>
-                <NavDropdown title="Répertoire">
-                    <LinkContainer to="/admin/repertoire"><NavDropdown.Item>Lister</NavDropdown.Item></LinkContainer>
-                    <LinkContainer to="/admin/repertoire/ajouter"><NavDropdown.Item>Ajouter</NavDropdown.Item></LinkContainer>
-                    <LinkContainer to="/admin/repertoire/top-5"><NavDropdown.Item>Top 5</NavDropdown.Item></LinkContainer>
-                </NavDropdown>
-                <NavDropdown title="Demandes spéciales">
-                    <NavDropdown.Item as={Link} to="/admin/demandes-speciales">Lister toutes</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to={{pathname: "/admin/demandes-speciales", search: "?actives=true"}}>Lister actives</NavDropdown.Item>
-                </NavDropdown>
-            </>
+            navbarElements =
+                <>
+                    <Nav.Link href="/admin">Accueil</Nav.Link>
+                    <NavDropdown title="Répertoire">
+                        <LinkContainer to="/admin/repertoire"><NavDropdown.Item>Lister</NavDropdown.Item></LinkContainer>
+                        <LinkContainer to="/admin/repertoire/ajouter"><NavDropdown.Item>Ajouter</NavDropdown.Item></LinkContainer>
+                        <LinkContainer to="/admin/repertoire/top-5"><NavDropdown.Item>Top 5</NavDropdown.Item></LinkContainer>
+                    </NavDropdown>
+                    <NavDropdown title="Demandes spéciales">
+                        <NavDropdown.Item as={Link} to="/admin/demandes-speciales">Lister toutes</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to={{ pathname: "/admin/demandes-speciales", search: "?actives=true" }}>Lister actives</NavDropdown.Item>
+                    </NavDropdown>
+                </>
             break;
-            
+
         default:
             navbarElements = <></>
             break;

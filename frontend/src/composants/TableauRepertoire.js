@@ -3,12 +3,10 @@ import Table from 'react-bootstrap/Table';
 import { RangeeRepertoire } from "./RangeeRepertoire";
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 
-export const TableauRepertoire = ({ repertoires, buttons=false }) => {
+export const TableauRepertoire = ({ repertoires, buttons = false }) => {
     const [repertoiresTries, setRepertoiresTries] = useState();
     const [repertoireNonAplati, setRepertoireNonAplati] = useState();
-    const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties ] = useState();
-    
-    
+    const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties] = useState();
 
     const handleSupression = repertoireASupprimer => {
         const nouveauRepertoires = repertoiresTries.filter(repertoire => repertoire._id !== repertoireASupprimer._id);
@@ -55,9 +53,9 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
             repertoire.categories.forEach((categorie, index) => {
                 repertoireEtendu.push(
                     {
-                        _id: repertoire._id, 
-                        titre: repertoire.titre, 
-                        artiste: repertoire.artiste, 
+                        _id: repertoire._id,
+                        titre: repertoire.titre,
+                        artiste: repertoire.artiste,
                         categories: [repertoire.categories[index]]
                     }
                 );
@@ -65,13 +63,13 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
             return repertoireEtendu;
         });
         setRepertoiresAvecCategoriesAplaties(nouveauRepertoiresAvecCategoriesAplaties);
-        
+
     }
     if (repertoiresAvecCategoriesAplaties && !repertoiresTries) {
         trierParCategorieCroissant();
     }
 
-    return(
+    return (
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -79,8 +77,8 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
                         <div className="d-flex justify-content-between">
                             <div className="p-2">Titre</div>
                             <div className="p-2">
-                                <SlArrowUp onClick={trierParTitreCroissant}/>
-                                <SlArrowDown onClick={trierParTitreDecroissant}/>
+                                <SlArrowUp onClick={trierParTitreCroissant} />
+                                <SlArrowDown onClick={trierParTitreDecroissant} />
                             </div>
                         </div>
                     </th>
@@ -88,8 +86,8 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
                         <div className="d-flex justify-content-between">
                             <div className="p-2">Artiste</div>
                             <div className="p-2">
-                                <SlArrowUp onClick={trierParArtisteCroissant}/>
-                                <SlArrowDown onClick={trierParArtisteDecroissant}/>
+                                <SlArrowUp onClick={trierParArtisteCroissant} />
+                                <SlArrowDown onClick={trierParArtisteDecroissant} />
                             </div>
                         </div>
                     </th>
@@ -97,8 +95,8 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
                         <div className="d-flex justify-content-between">
                             <div className="p-2">Catégories</div>
                             <div className="p-2">
-                                <SlArrowUp onClick={trierParCategorieCroissant}/>
-                                <SlArrowDown onClick={trierParCategorieDecroissant}/>
+                                <SlArrowUp onClick={trierParCategorieCroissant} />
+                                <SlArrowDown onClick={trierParCategorieDecroissant} />
                             </div>
                         </div>
                     </th>
@@ -106,8 +104,8 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
                 </tr>
             </thead>
             <tbody>
-                {repertoiresTries?.map(repertoire => 
-                    <RangeeRepertoire 
+                {repertoiresTries?.map(repertoire =>
+                    <RangeeRepertoire
                         key={repertoire._id + repertoire.categories[0]}
                         repertoire={repertoire}
                         buttons={buttons}

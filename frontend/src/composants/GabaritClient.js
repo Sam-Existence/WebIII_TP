@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 export const GabaritClient = (props) => {
     return (
         <>
-            <Header/>
+            <Header />
             <Container className="py-2">
                 <Outlet />
             </Container>

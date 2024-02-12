@@ -1,8 +1,8 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { ModalSupression } from './ModalSupression'
 
-export const BoutonsSupressionModification = ({repertoire, handleSupression}) => {
+export const BoutonsSupressionModification = ({ repertoire, handleSupression }) => {
     const [show, setShow] = useState(false);
     return (
         <>

@@ -4,7 +4,7 @@ import { RangeeTopPiece } from "./RangeeTopPiece";
 
 export const ListeTopPieces = ({ repertoires }) => {
     let numero = 1;
-    return(
+    return (
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -16,7 +16,7 @@ export const ListeTopPieces = ({ repertoires }) => {
                 </tr>
             </thead>
             <tbody>
-                {repertoires?.map(repertoire => 
+                {repertoires?.map(repertoire =>
                     <RangeeTopPiece
                         key={repertoire._id}
                         numero={numero++}

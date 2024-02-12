@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { FomulaireRepertoire } from "../composants/FormulaireRepertoire";
@@ -35,7 +35,7 @@ export const PageModifierRepertoire = () => {
     return (
         <main>
             <h2 className="text-center">Modifier un répertoire</h2>
-            <FomulaireRepertoire handleSubmit={handleSubmit} status={status} repertoire={repertoire}/>
+            <FomulaireRepertoire handleSubmit={handleSubmit} status={status} repertoire={repertoire} />
         </main>
     );
 }

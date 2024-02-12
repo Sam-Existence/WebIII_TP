@@ -2,11 +2,13 @@ import { React, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FaPlus, FaMinus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export const FomulaireRepertoire = ({ handleSubmit, status = "", repertoire = null }) => {
     const [titre, setTitre] = useState('');
     const [artiste, setArtiste] = useState('');
     const [categories, setCategories] = useState(['']);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTitre(repertoire ? repertoire.titre : '');
@@ -44,7 +46,7 @@ export const FomulaireRepertoire = ({ handleSubmit, status = "", repertoire = nu
                 {categories.map((categorie, index) =>
                     <div key={index} className="d-flex mb-1">
                         <Form.Control type="text" value={categorie} onChange={(e) => handleModificationCatagorie(e.target.value, index)} />
-                        <FaMinus className="py-auto" onClick={() => setCategories(categories.filter((c, i) => i !== index))}/>
+                        <FaMinus className="py-auto" onClick={() => setCategories(categories.filter((c, i) => i !== index))} />
                     </div>
                 )}
                 <FaPlus className="mb-3" onClick={() => setCategories([...categories, ''])} />
@@ -53,7 +55,7 @@ export const FomulaireRepertoire = ({ handleSubmit, status = "", repertoire = nu
                 Soumettre
             </Button>
             &nbsp;
-            <Button className="mb-3" variant="danger" type="button" onClick={() => window.location.href = "/admin"}>
+            <Button className="mb-3" variant="danger" type="button" onClick={() => navigate("/admin")}>
                 Annuler
             </Button>
             <p className={status ? "" : "d-none"}>{status}</p>

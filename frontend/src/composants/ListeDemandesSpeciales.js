@@ -1,10 +1,10 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import { RangeeDemandeSpeciale } from "./RangeeDemandeSpeciale";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
-export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton="client" }) => {
-    const BouttonConsulter = ({id}) => {
+export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton = "client" }) => {
+    const BouttonConsulter = ({ id }) => {
         let lien;
 
         switch (typeButton) {
@@ -21,7 +21,7 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton="client" 
                 break;
         }
 
-        return(
+        return (
             <Button
                 variant="primary"
                 type="button"
@@ -34,11 +34,11 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton="client" 
 
     let tbody = <></>;
     if (demandesSpeciales?.length) {
-        tbody = 
+        tbody =
             <tbody>
                 {
-                    demandesSpeciales.map(demandeSpeciale => 
-                        <RangeeDemandeSpeciale 
+                    demandesSpeciales.map(demandeSpeciale =>
+                        <RangeeDemandeSpeciale
                             demandeSpeciale={demandeSpeciale}
                             key={demandeSpeciale._id}
                             Button={() => <BouttonConsulter id={demandeSpeciale._id} />}
@@ -46,9 +46,9 @@ export const ListeDemandesSpeciales = ({ demandesSpeciales, typeButton="client" 
                     )
                 }
             </tbody>;
-    } 
-    
-    return(
+    }
+
+    return (
         <Table striped bordered hover>
             <thead>
                 <tr>

@@ -1,7 +1,7 @@
 import React from "react";
 
 export const RangeeTopPiece = ({ numero, repertoire }) => {
-    return(
+    return (
         <tr>
             <td>{numero}</td>
             <td>{repertoire.titre}</td>

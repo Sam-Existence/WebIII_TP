@@ -1,11 +1,11 @@
-import { React } from "react";
+import React from "react";
 import { BoutonsSupressionModification } from "./BoutonsSupressionModification";
 
 export const RangeeRepertoire = ({ repertoire, buttons = false, handleSupression }) => {
-    const categories = repertoire.categories.reduce((acc, categorie, index) => 
+    const categories = repertoire.categories.reduce((acc, categorie, index) =>
         acc + ((repertoire.categories.length <= index + 1) ? categorie : `${categorie}, `)
-    , "");
-    return(
+        , "");
+    return (
         <tr>
             <td>{repertoire.titre}</td>
             <td>{repertoire.artiste}</td>

@@ -3,12 +3,12 @@ import { useSearchParams } from "react-router-dom";
 import { FormulaireDemandeSpeciale } from "../composants/FormulaireDemandeSpeciale";
 
 export const PageAjouterDemandeSpeciale = () => {
-    let [ searchParams ] = useSearchParams();
+    let [searchParams] = useSearchParams();
     const [status, setStatus] = useState('');
 
     const handleSubmit = async (e, demandeSpeciale) => {
         e.preventDefault();
-        
+
         let reponse = await fetch('/api/demandes-speciales', {
             method: 'POST',
             body: JSON.stringify(demandeSpeciale),
@@ -27,7 +27,7 @@ export const PageAjouterDemandeSpeciale = () => {
     return (
         <main>
             <h2 className="text-center">Ajouter une demande spéciale</h2>
-            <FormulaireDemandeSpeciale handleSubmit={handleSubmit} status={status} name={searchParams.get("nom")}/>
+            <FormulaireDemandeSpeciale handleSubmit={handleSubmit} status={status} name={searchParams.get("nom")} />
         </main>
     );
 }
