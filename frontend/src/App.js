@@ -26,6 +26,7 @@ function App() {
             <Route index element={<PageAccueil />} />
             <Route path="repertoire" element={<PageRepertoire />} />
             <Route path="demandes-speciales" element={<PageRechercherDemandeSpeciales />} />
+            <Route path="demandes-speciales/ajouter" element={<PageAjouterDemandeSpeciale />} />
           </Route>
           <Route path="/admin" element={<GabaritAdmin />}>
             <Route index element={<Navigate to='/admin/repertoire' />} />

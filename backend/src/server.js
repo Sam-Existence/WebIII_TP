@@ -219,7 +219,7 @@ app.post('/api/demandes-speciales', async (requete, reponse) => {
                         ))
                     .insertedId;
             });
-            reponse.status(400).json({ 'uri': `/api/demandes-speciales/${id}` });
+            reponse.status(201).json({ 'uri': `/api/demandes-speciales/${id}` });
         }
     }
 });
