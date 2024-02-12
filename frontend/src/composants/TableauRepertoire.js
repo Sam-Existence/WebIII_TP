@@ -64,9 +64,7 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
             });
             return repertoireEtendu;
         });
-        console.log(nouveauRepertoiresAvecCategoriesAplaties);
         setRepertoiresAvecCategoriesAplaties(nouveauRepertoiresAvecCategoriesAplaties);
-        console.log(repertoiresAvecCategoriesAplaties);
         
     }
     if (repertoiresAvecCategoriesAplaties && !repertoiresTries) {
