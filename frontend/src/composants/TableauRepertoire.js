@@ -4,10 +4,11 @@ import { RangeeRepertoire } from "./RangeeRepertoire";
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 
 export const TableauRepertoire = ({ repertoires, buttons=false }) => {
-    const [repertoiresTries, setRepertoiresTries] = useState(repertoires);
-    if (repertoires && !repertoiresTries) {
-        setRepertoiresTries(repertoires.sort((a, b) => a.categorie.localeCompare(b.categorie)));
-    }
+    const [repertoiresTries, setRepertoiresTries] = useState();
+    const [repertoireNonAplati, setRepertoireNonAplati] = useState();
+    const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties ] = useState();
+    
+    
 
     const handleSupression = repertoireASupprimer => {
         const nouveauRepertoires = repertoiresTries.filter(repertoire => repertoire._id !== repertoireASupprimer._id);
@@ -15,33 +16,61 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
     }
 
     const trierParTitreCroissant = () => {
-        const nouveauRepertoires = repertoiresTries.toSorted((a, b) => a.titre.localeCompare(b.titre));
+        const nouveauRepertoires = repertoireNonAplati.toSorted((a, b) => a.titre.localeCompare(b.titre));
         setRepertoiresTries(nouveauRepertoires);
     }
 
     const trierParTitreDecroissant = () => {
-        const nouveauRepertoires = repertoiresTries.toSorted((a, b) => b.titre.localeCompare(a.titre));
+        const nouveauRepertoires = repertoireNonAplati.toSorted((a, b) => b.titre.localeCompare(a.titre));
         setRepertoiresTries(nouveauRepertoires);
     }
 
     const trierParArtisteCroissant = () => {
-        const nouveauRepertoires = repertoiresTries.toSorted((a, b) => a.artiste.localeCompare(b.artiste));
+        const nouveauRepertoires = repertoireNonAplati.toSorted((a, b) => a.artiste.localeCompare(b.artiste));
         setRepertoiresTries(nouveauRepertoires);
     }
 
     const trierParArtisteDecroissant = () => {
-        const nouveauRepertoires = repertoiresTries.toSorted((a, b) => b.artiste.localeCompare(a.artiste));
+        const nouveauRepertoires = repertoireNonAplati.toSorted((a, b) => b.artiste.localeCompare(a.artiste));
         setRepertoiresTries(nouveauRepertoires);
     }
 
     const trierParCategorieCroissant = () => {
-        const nouveauRepertoires = repertoiresTries.toSorted((a, b) => a.categorie.localeCompare(b.categorie));
+        const nouveauRepertoires = repertoiresAvecCategoriesAplaties.toSorted((a, b) => a.categories[0].localeCompare(b.categories[0]));
         setRepertoiresTries(nouveauRepertoires);
     }
 
     const trierParCategorieDecroissant = () => {
-        const nouveauRepertoires = repertoiresTries.toSorted((a, b) => b.categorie.localeCompare(a.categorie));
+        const nouveauRepertoires = repertoiresAvecCategoriesAplaties.toSorted((a, b) => b.categories[0].localeCompare(a.categories[0]));
         setRepertoiresTries(nouveauRepertoires);
+    }
+
+    if (repertoires && !repertoireNonAplati) {
+        setRepertoireNonAplati(repertoires.sort((a, b) => a.categories[0].localeCompare(b.categories[0])));
+    }
+
+    if (repertoires && !repertoiresTries) {
+        let nouveauRepertoiresAvecCategoriesAplaties = repertoires.flatMap((repertoire) => {
+            let repertoireEtendu = [];
+            repertoire.categories.forEach((categorie, index) => {
+                repertoireEtendu.push(
+                    {
+                        _id: repertoire._id, 
+                        titre: repertoire.titre, 
+                        artiste: repertoire.artiste, 
+                        categories: [repertoire.categories[index]]
+                    }
+                );
+            });
+            return repertoireEtendu;
+        });
+        console.log(nouveauRepertoiresAvecCategoriesAplaties);
+        setRepertoiresAvecCategoriesAplaties(nouveauRepertoiresAvecCategoriesAplaties);
+        console.log(repertoiresAvecCategoriesAplaties);
+        
+    }
+    if (repertoiresAvecCategoriesAplaties && !repertoiresTries) {
+        trierParCategorieCroissant();
     }
 
     return(
@@ -68,7 +97,7 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Catégorie</div>
+                            <div className="p-2">Catégories</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParCategorieCroissant}/>
                                 <SlArrowDown onClick={trierParCategorieDecroissant}/>
@@ -81,7 +110,7 @@ export const TableauRepertoire = ({ repertoires, buttons=false }) => {
             <tbody>
                 {repertoiresTries?.map(repertoire => 
                     <RangeeRepertoire 
-                        key={repertoire._id}
+                        key={repertoire._id + repertoire.categories[0]}
                         repertoire={repertoire}
                         buttons={buttons}
                         handleSupression={handleSupression}
