@@ -6,7 +6,7 @@ export const PageAdmin = () => {
     useEffect(() => {
         const chercherRepertoires = async () => {
             const body = await fetch('/api/repertoire/pieces').then(resultat => resultat.json());
-            setRepertoires(body.sort((a, b) => a.categorie.localeCompare(b.categorie)))
+            setRepertoires(body)
         };
         chercherRepertoires();
     }, []);
