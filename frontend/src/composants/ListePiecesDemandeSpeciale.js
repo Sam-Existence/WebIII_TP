@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
-import { RangeeRepertoire } from "./RangeeRepertoire";
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
+import { RangeePieceDemandeSpeciale } from "./RangeePieceDemandeSpeciale";
 
-export const TableauRepertoire = ({ repertoires, buttons = false }) => {
+export const ListePiecesDemandeSpeciale = ({ pieces, typeBouton = "supprimer", handleModification }) => {
     const [repertoiresTries, setRepertoiresTries] = useState();
     const [repertoireNonAplati, setRepertoireNonAplati] = useState();
     const [repertoiresAvecCategoriesAplaties, setRepertoiresAvecCategoriesAplaties] = useState();
 
-    const handleSupression = repertoireASupprimer => {
-        const nouveauRepertoires = repertoiresTries.filter(repertoire => repertoire._id !== repertoireASupprimer._id);
-        setRepertoiresTries(nouveauRepertoires);
-    }
+    useEffect(() => {
+        setRepertoiresTries(null);
+        setRepertoireNonAplati(null);
+        setRepertoiresAvecCategoriesAplaties(null);
+    }, [pieces])
 
     const trierParTitreCroissant = () => {
         const nouveauRepertoires = repertoireNonAplati.toSorted((a, b) => a.titre.localeCompare(b.titre));
@@ -43,12 +44,12 @@ export const TableauRepertoire = ({ repertoires, buttons = false }) => {
         setRepertoiresTries(nouveauRepertoires);
     }
 
-    if (repertoires && !repertoireNonAplati) {
-        setRepertoireNonAplati(repertoires.sort((a, b) => a.categories[0].localeCompare(b.categories[0])));
+    if (pieces && !repertoireNonAplati) {
+        setRepertoireNonAplati(pieces.sort((a, b) => a.categories[0].localeCompare(b.categories[0])));
     }
 
-    if (repertoires && !repertoiresTries) {
-        let nouveauRepertoiresAvecCategoriesAplaties = repertoires.flatMap((repertoire) => {
+    if (pieces && !repertoiresTries) {
+        let nouveauRepertoiresAvecCategoriesAplaties = pieces.flatMap((repertoire) => {
             let repertoireEtendu = [];
             repertoire.categories.forEach((categorie, index) => {
                 repertoireEtendu.push(
@@ -93,23 +94,23 @@ export const TableauRepertoire = ({ repertoires, buttons = false }) => {
                     </th>
                     <th>
                         <div className="d-flex justify-content-between">
-                            <div className="p-2">Catégories</div>
+                            <div className="p-2">Catégorie</div>
                             <div className="p-2">
                                 <SlArrowUp onClick={trierParCategorieCroissant} />
                                 <SlArrowDown onClick={trierParCategorieDecroissant} />
                             </div>
                         </div>
                     </th>
-                    {buttons ? <th></th> : <></>}
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {repertoiresTries?.map(repertoire =>
-                    <RangeeRepertoire
+                    <RangeePieceDemandeSpeciale
                         key={repertoire._id + repertoire.categories[0]}
-                        repertoire={repertoire}
-                        buttons={buttons}
-                        handleSupression={handleSupression}
+                        piece={repertoire}
+                        typeBouton={typeBouton}
+                        handleModification={handleModification}
                     />)}
             </tbody>
         </Table>

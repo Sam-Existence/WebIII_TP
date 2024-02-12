@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { TableauRepertoire } from "../composants/TableauRepertoire";
 
 export const PageRepertoire = () => {
@@ -6,14 +6,14 @@ export const PageRepertoire = () => {
     useEffect(() => {
         const chercherRepertoires = async () => {
             const body = await fetch('/api/repertoire/pieces').then(resultat => resultat.json());
-            setRepertoires(body.sort((a, b) => a.categorie.localeCompare(b.categorie)))
+            setRepertoires(body);
         };
         chercherRepertoires();
     }, []);
 
     return (
         <main>
-            <h2 className="text-center">Liste de répertoire</h2>
+            <h2 className="text-center">Répertoire</h2>
             <TableauRepertoire repertoires={repertoires} />
         </main>
     );
