@@ -11,8 +11,7 @@ export const PageDemandeSpeciales = () => {
     useEffect(() => {
         const recupererDemandesSpeciales = async () => {
             let fetchUri = '/api/demandes-speciales';
-            fetchUri += actives ? '/actives' : '';
-            console.log(fetchUri, actives, searchParams.get("actives"));
+            fetchUri += actives ? '/active' : '';
             const body = await fetch(fetchUri).then(resultat => resultat.json());
             setDemandesSpeciales(body);
         }
